@@ -19,7 +19,7 @@
     <link href='{{ asset("css/sweetalert.css") }}' rel="stylesheet"> --}}
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link href='{{ asset("css/template.css") }}' rel="stylesheet">
+    <link href='{{ asset("css/template-inicio.css") }}' rel="stylesheet">
 
 
 
@@ -29,11 +29,13 @@
 </head>
 <body>
 
+<main>
+  
   <header class="bg-white">
     <div class="__navbar container">
       <div class="row justify-content-center">
         <div class="col-12 col-md-12 col-lg-4 d-flex justify-content-center __logo px-0 my-auto">
-                <a class="navbar-brand d-flex mt-md-2 mx-auto" href="#">
+                <a class="navbar-brand d-flex mt-md-2 mx-auto" href="/">
                     <img src="images/logos/logo_mosconi.png" width="200" height="70" class="d-inline-block align-top px-0 m-auto" alt="" loading="lazy">
                   </a>
             </div>
@@ -42,16 +44,16 @@
                   <div class="__navbar-1 col-12 d-block d-flex pl-4 my-1">
                       <ul class="col-12 d-flex justify-content-center nav">
                           <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/guardia-web-off.jpg" onMouseOver="this.src='images/iconos/guardia-web-on.jpg'"onMouseOut="this.src='images/iconos/guardia-web-off.jpg'" width="120" height="55" class="d-flex" loading="lazy" alt="guardia-web"></a>
+                            <a class="nav-link" href="#"><img src="images/iconos/guardia-web-off.png" onMouseOver="this.src='images/iconos/guardia-web-on.png'"onMouseOut="this.src='images/iconos/guardia-web-off.png'" width="140" height="45" class="d-flex" loading="lazy" alt="guardia-web"></a>
                           </li>
                           <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/guardia-pediatrica-off.jpg" onMouseOver="this.src='images/iconos/guardia-pediatrica-on.jpg'"onMouseOut="this.src='images/iconos/guardia-pediatrica-off.jpg'" width="120" height="55" class="d-flex" loading="lazy" alt="guardia-pediatrica"></a>
+                            <a class="nav-link" href="#"><img src="images/iconos/guardia-pediatrica-off.png" onMouseOver="this.src='images/iconos/guardia-pediatrica-on.png'"onMouseOut="this.src='images/iconos/guardia-pediatrica-off.png'" width="140" height="45" class="d-flex" loading="lazy" alt="guardia-pediatrica"></a>
                           </li>
                           <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/whatsapp-off.jpg" onMouseOver="this.src='images/iconos/whatsapp-on.jpg'"onMouseOut="this.src='images/iconos/whatsapp-off.jpg'" width="120" height="55" class="d-flex" loading="lazy" alt="whatsapp"></a>
+                            <a class="nav-link" href="#"><img src="images/iconos/whatsapp-off.png" onMouseOver="this.src='images/iconos/whatsapp-on.png'"onMouseOut="this.src='images/iconos/whatsapp-off.png'" width="140" height="45" class="d-flex" loading="lazy" alt="whatsapp"></a>
                           </li>
                           <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/contacto-off.jpg" onMouseOver="this.src='images/iconos/contacto-on.jpg'"onMouseOut="this.src='images/iconos/contacto-off.jpg'" width="120" height="55" class="d-flex" loading="lazy" alt="contacto"></a>
+                            <a class="nav-link" href="#"><img src="images/iconos/contacto-off.png" onMouseOver="this.src='images/iconos/contacto-on.png'"onMouseOut="this.src='images/iconos/contacto-off.png'" width="140" height="45" class="d-flex" loading="lazy" alt="contacto"></a>
                           </li>
                         </ul>
                   </div>
@@ -62,18 +64,15 @@
                       <button class="navbar-toggler mr-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                       </button>
-                      <div class="container-fluid collapse navbar-collapse justify-content-center mt-sm-2" id="navbarTogglerDemo03">
-                        <ul class="col-sm-12 navbar-nav d-flex justify-content-center justify-content-sm-center justify-content-md-between justify-content-lg-around mb-2 mb-lg-0 mt-md-2">
-                          <li class="nav-item mx-auto mt-4 mt-sm-0 mt-md-0 mt-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="#">Especialidades</a>
+                      <div class="collapse navbar-collapse justify-content-between p-0 m-0 mt-sm-2" id="navbarTogglerDemo03">
+                        <ul class="col-sm-12 navbar-nav d-flex justify-content-center justify-content-sm-center justify-content-md-between justify-content-lg-start mb-2 mb-lg-0 mt-md-2">
+                          <li class="nav-item mx-auto mx-lg-0 px-lg-0 mt-4 mt-sm-0 mt-md-0 mt-lg-0">
+                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="/especialidades">Especialidades</a>
                           </li>
-                          <li class="nav-item mx-auto">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="#">Staff Médico</a>
+                          <li class="nav-item mx-auto mx-lg-0 px-lg-0">
+                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="#">Estudios de Laboratorio</a>
                           </li>
-                          <li class="nav-item mx-auto">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="#">Laboratorio</a>
-                          </li>
-                          <li class="nav-item mx-auto">
+                          <li class="nav-item mx-auto mx-lg-0 px-lg-0">
                             <a class="nav-link text-nowrap text-uppercase text-secondary" href="#">Diagnóstico por Imágenes</a>
                           </li>
                         </ul>
@@ -96,7 +95,7 @@
 <footer class="">
   <div class="container">
     <div class="row justify-content-xs-center justify-content-sm-center justify-content-md-center justify-content-lg-between mx-auto mx-sm-auto mx-md-auto pl-lg-3">
-        <div class="col-12 col-md-5 col-lg-3 __institucional container-fluid justify-content-center justify-content-xs-center justify-content-sm-center justify-content-md-center justify-content-lg-start mx-auto mx-sm-auto mx-md-auto mx-lg-0 my-4 px-0">
+        <div class="col-12 col-md-5 col-lg-2 __institucional container-fluid justify-content-center justify-content-xs-center justify-content-sm-center justify-content-md-center justify-content-lg-start mx-auto mx-sm-auto mx-md-auto mx-lg-0 my-4 px-0">
           <div class="d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start">
             <h5 class="fs-5 text-white text-nowrap fw-bolder d-flex pb-3 p-auto">Institucional</h5>
           </div>
@@ -116,6 +115,28 @@
           </ul>
         </div>
 
+        <div class="col-12 col-md-5 col-lg-3 __contactos justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start mx-sm-auto mx-md-auto mx-lg-0 my-4">
+          {{-- <ul class="navbar-nav d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start flex-row mx-md-auto">
+            <li class="nav-item mx-2 p-1">
+              <a class="nav-link fs-5 text-nowrap text-white d-flex my-1 py-0" href="#"><i class="fab fa-facebook-f"></i></a>
+            </li>
+            <li class="nav-item mx-2 p-1">
+              <a class="nav-link fs-5 text-nowrap text-white d-flex my-1 py-0" href="#"><i class="fab fa-instagram"></i></a>
+            </li>
+            <li class="nav-item mx-2 p-1">
+              <a class="nav-link fs-5 text-nowrap text-white d-flex my-1 py-0" href="#"><i class="fab fa-twitter"></i></a>
+            </li>
+          </ul> --}}
+          <div class="d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start py-1">
+              <a class="nav-link fs-6 text-nowrap text-white text-left d-flex my-auto py-0" href="#"><p><i class=" fs-5 fas fa-phone-alt"></i> (221) 464-5881</p></a>
+          </div>
+          <div class="__direccion d-flex flex-column justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start">
+            <span class="nav-link fs-6 text-nowrap text-white text-left d-flex mx-auto mx-sm-auto mx-md-auto mx-lg-0 my-auto py-0">Calle 8 Laveratto 3419</span>
+            <span class="nav-link fs-6 text-nowrap text-white text-left d-flex mx-auto mx-sm-auto mx-md-auto mx-lg-0 my-auto py-0">B1923 Berisso</span>
+            <span class="nav-link fs-6 text-nowrap text-white text-left d-flex mx-auto mx-sm-auto mx-md-auto mx-lg-0 my-auto py-0">Provincia de Buenos Aires</span>
+          </div>
+        </div>
+
         <div class="col-12 col-md-5 col-lg-3 __accesos-rapidos justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start mx-md-auto my-4 px-0">
           <div class="d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start">
             <h5 class="fs-5 text-white text-nowrap fw-bolder d-flex pb-3 p-auto">Accesos rápidos</h5>
@@ -133,41 +154,17 @@
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0 d-flex">
               <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Cooperativa Mosconi</a>
             </li>
-            <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0 d-flex">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Farmacias</a>
-            </li>
           </ul>
         </div>
-        
-          <div class="col-12 col-md-5 col-lg-3 __contactos justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start mx-sm-auto mx-md-auto mx-lg-0 my-4">
-            <ul class="navbar-nav d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start flex-row mx-md-auto">
-              <li class="nav-item mx-2 p-1">
-                <a class="nav-link fs-5 text-nowrap text-white d-flex my-1 py-0" href="#"><i class="fab fa-facebook-f"></i></a>
-              </li>
-              <li class="nav-item mx-2 p-1">
-                <a class="nav-link fs-5 text-nowrap text-white d-flex my-1 py-0" href="#"><i class="fab fa-instagram"></i></a>
-              </li>
-              <li class="nav-item mx-2 p-1">
-                <a class="nav-link fs-5 text-nowrap text-white d-flex my-1 py-0" href="#"><i class="fab fa-twitter"></i></a>
-              </li>
-            </ul>
-            <div class="d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start my-4 py-2">
-                <a class="nav-link fs-6 text-nowrap text-white d-flex my-auto py-0" href="#"><p><i class=" fs-5 fas fa-phone-alt"></i> (221) 464-5881</p></a>
-            </div>
-            <div class="__direccion d-flex flex-column justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start">
-              <span class="nav-link fs-6 text-nowrap text-white d-flex mx-auto mx-sm-auto mx-md-auto mx-lg-0 my-auto py-0">Calle 8 Laveratto 3419</span>
-              <span class="nav-link fs-6 text-nowrap text-white d-flex mx-auto mx-sm-auto mx-md-auto mx-lg-0 my-auto py-0">B1923 Berisso</span>
-              <span class="nav-link fs-6 text-nowrap text-white d-flex mx-auto mx-sm-auto mx-md-auto mx-lg-0 my-auto py-0">Provincia de Buenos Aires</span>
-            </div>
-          </div>
 
-          <div class="col-12 col-md-5 col-lg-3 d-flex justify-content-md-center justify-content-lg-end __logo-footer mx-auto mx-md-auto mx-lg-0 my-4 my-sm-4 my-md-auto my-lg-auto">
-            <img class="mx-auto mx-lg-0" src="images/logos/logo_negativo.jpg" width="220" height="85" alt="logo_mosconi" loading="lazy">
+          <div class="col-12 col-md-5 col-lg-3 d-flex justify-content-md-center justify-content-lg-end __logo-footer mx-auto mx-md-auto mx-lg-0 my-4 my-sm-4 my-md-auto my-lg-0 align-items-lg-end">
+            <img class="d-flex mx-auto mx-lg-0 mb-lg-4" src="images/logos/logo_negativo.jpg" width="220" height="85" alt="logo_mosconi" loading="lazy">
           </div>
     </div>
   </div>
 </footer>
 
+</main>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script> 
