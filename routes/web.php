@@ -27,8 +27,11 @@ Route::group(array('prefix' => 'inicio'), function(){
 });
 
 // Ruta de sección 'Especialidades'
-Route::get('/especialidades', 'Especialidades\SpecialtiesController@specialties');
+// Route::get('/especialidades', 'Especialidades\SpecialtiesController@specialties');
+Route::group(array('prefix' => 'especialidades'), function(){
+	Route::get('/',	'Especialidades\EspecialidadesController@index')->name('especialidades.index');
 
+});
 
 Route::group(array('prefix' => 'nuevoTurno'), function(){
 

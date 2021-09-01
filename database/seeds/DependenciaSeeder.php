@@ -12,9 +12,9 @@ class DependenciaSeeder extends Seeder
      */
     public function run()
     {
-        $d = new Dependencia();
-        $d->codigo = "DDef";
-        $d->nombre = "DepDefault";
-        $d->save();
+        // $d = new Dependencia();
+        // $d->codigo = "DDef";
+        // $d->nombre = "DepDefault";
+        // $d->save();
     }
 }

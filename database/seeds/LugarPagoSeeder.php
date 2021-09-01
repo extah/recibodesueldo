@@ -12,9 +12,9 @@ class LugarPagoSeeder extends Seeder
      */
     public function run()
     {
-        $l = new LugarPago();
-        $l->codigo = "LPDef";
-        $l->nombre = "LugarPagoDefault";
-        $l->save();
+        // $l = new LugarPago();
+        // $l->codigo = "LPDef";
+        // $l->nombre = "LugarPagoDefault";
+        // $l->save();
     }
 }

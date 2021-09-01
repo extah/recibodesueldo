@@ -13,10 +13,10 @@ class RolSeeder extends Seeder
      */
     public function run()
     {
-        $rol = new Rol();
-        $rol->nombre = "Nuevo";
-        $rol->save();
-        $a = Accion::where('nombre', '=', 'Base')->first();
-        $rol->accions()->attach($a->id);
+        // $rol = new Rol();
+        // $rol->nombre = "Nuevo";
+        // $rol->save();
+        // $a = Accion::where('nombre', '=', 'Base')->first();
+        // $rol->accions()->attach($a->id);
     }
 }

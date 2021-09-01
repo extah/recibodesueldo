@@ -67,7 +67,7 @@
                       <div class="collapse navbar-collapse justify-content-between p-0 m-0 mt-sm-2" id="navbarTogglerDemo03">
                         <ul class="col-sm-12 navbar-nav d-flex justify-content-center justify-content-sm-center justify-content-md-between justify-content-lg-start mb-2 mb-lg-0 mt-md-2">
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0 mt-4 mt-sm-0 mt-md-0 mt-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="/especialidades">Especialidades</a>
+                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="{{route('especialidades.index')}}">Especialidades</a>
                           </li>
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0">
                             <a class="nav-link text-nowrap text-uppercase text-secondary" href="#">Estudios de Laboratorio</a>

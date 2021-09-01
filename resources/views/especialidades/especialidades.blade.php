@@ -24,25 +24,40 @@
                     </div>
                     <div class="col-8 d-flex flex-column flex-sm-column flex-md-row flex-lg-row justify-content-center justify-content-sm-center justify-content-md-between justify-content-between mx-auto p-0">
                         <div class="dropdown my-2 mx-auto mx-sm-auto mx-md-auto mx-lg-0 py-2">
-                            <button class="btn btn-block btn-outline-white border-bottom dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <!-- <button class="btn btn-block btn-outline-white border-bottom dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                               Búsqueda por especialidad...
                             </button>
                             <ul class="dropdown-menu col-12" aria-labelledby="dropdownMenuButton1">
                               <li><a class="dropdown-item" href="#">Action</a></li>
                               <li><a class="dropdown-item" href="#">Another action</a></li>
                               <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                            </ul> -->
+                            <!-- <label class="formItem" for="select_especialidades"> <b>Seleccione la especialidad</b></label> -->
+                            <select name="select_especialidades" id="select_especialidades" class="form-control" required>
+                              <option value="">-Seleccioná una especialidad-</option>
+                              @foreach($especialidades as $especialidad)
+                                <option value="{{ $especialidad->id }}" offset="1">{{ $especialidad->nombre }}</option>
+                              
+                              @endforeach
+                            </select>
                           </div>
     
                           <div class="dropdown my-2 mx-auto mx-sm-auto mx-md-auto mx-lg-0 py-2">
-                            <button class="btn btn-block btn-outline-white border-bottom dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <!-- <button class="btn btn-block btn-outline-white border-bottom dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                               Búsqueda por médico...
                             </button>
                             <ul class="dropdown-menu col-12" aria-labelledby="dropdownMenuButton2">
                               <li><a class="dropdown-item" href="#">Action</a></li>
                               <li><a class="dropdown-item" href="#">Another action</a></li>
                               <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                            </ul> -->
+                            
+                            <select name="select_medicos" id="select_medicos" class="form-control" required>
+                              <option value="">-Seleccioná un medico/a-</option>
+                              @foreach($medicos as $medico)
+                                  <option value="{{ $medico->id }}" offset="1">{{ $medico->nombre}} {{ $medico->apellido}} </option>
+                              @endforeach
+                            </select>
                           </div>
                     </div>
                     <div class="col-12 d-flex mx-auto my-4">

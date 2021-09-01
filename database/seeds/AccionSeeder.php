@@ -12,9 +12,9 @@ class AccionSeeder extends Seeder
      */
     public function run()
     {
-        $accion = new Accion();
-        $accion->nombre = "Base";
-        $accion->descripcion = "Acción de base";
-        $accion->save();
+        // $accion = new Accion();
+        // $accion->nombre = "Base";
+        // $accion->descripcion = "Acción de base";
+        // $accion->save();
     }
 }
