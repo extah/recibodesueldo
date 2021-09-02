@@ -21,151 +21,120 @@ class EspecialidadesSeeder extends Seeder
         //     'descripcion' => Str::random(10).'@gmail.com',
         // ]);
         $p = new Especialidades();
-        $p->nombre = "ALERGIA E INMUNOLOGIA";
-        $p->descripcion = "tratamiento tanto de enfermedades alérgicas como fallas en nuestro sistema de defensas";
-        $p->save();
-
-        $p = new Especialidades();
-        $p->nombre = "CARDIOLOGIA";
-        $p->descripcion = "diagnóstico y tratamiento de enfermedades del corazón, los vasos sanguíneos y el sistema circulatorio";
-        $p->save();
-
-        $p = new Especialidades();
-        $p->nombre = "CIRUGIA PLASTICA Y REPARADORA";
+        $p->nombre = "Clínica";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "CIRUGIA TORACICA";
+        $p->nombre = "Traumatología";
+        $p->descripcion = "";
+        $p->save();
+
+        $p = new Especialidades();
+        $p->nombre = "Urología";
+        $p->descripcion = "";
+        $p->save();
+
+        $p = new Especialidades();
+        $p->nombre = "Oncología";
         $p->descripcion = "";
         $p->save();
 
 
         $p = new Especialidades();
-        $p->nombre = "CIRUGIA GENERAL";
+        $p->nombre = "Psiquiatría";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "CIRUGIA CARDIOVASCULAR";
+        $p->nombre = "Psicología";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "CIRUGIA TORACICA";
+        $p->nombre = "Neurología";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "CLINICA MEDICA";
+        $p->nombre = "Neumonología";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "DERMATOLOGIA";
+        $p->nombre = "Nefrología";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "DIAGNOSTICO POR IMAGENES";
+        $p->nombre = "Oftalmología";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "ENDOCRINOLOGIA";
+        $p->nombre = "Otorrinolaringología";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "INFECTOLOGIA PEDIÁTRICA";
+        $p->nombre = "Flebología";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "GASTROENTEROLOGIA";
+        $p->nombre = "Diabetología";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "GINECOLOGIA";
+        $p->nombre = "Gastroenterología";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "NEONATOLOGIA";
+        $p->nombre = "Ginecología";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "NEUMONOLOGIA";
+        $p->nombre = "Hematología";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "NEUROCIRUGIA";
+        $p->nombre = "Dermatología";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "NEUROLOGIA";
+        $p->nombre = "Cardiología";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "NUTRICION";
+        $p->nombre = "Cirugía";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "OBSTETRICIA";
+        $p->nombre = "Imágenes";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "OFTALMOLOGIA";
+        $p->nombre = "Kinesiología";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "ONCOLOGIA";
+        $p->nombre = "Servicio de Guardia";
         $p->descripcion = "";
         $p->save();
 
         $p = new Especialidades();
-        $p->nombre = "OTORRINOLARINGOLOGIA";
+        $p->nombre = "Guardia Unidad Terapia Intensiva";
         $p->descripcion = "";
         $p->save();
-
-        $p = new Especialidades();
-        $p->nombre = "PEDIATRIA";
-        $p->descripcion = "";
-        $p->save();
-
-        $p = new Especialidades();
-        $p->nombre = "PSIQUIATRIA";
-        $p->descripcion = "";
-        $p->save();
-
-        $p = new Especialidades();
-        $p->nombre = "RADIOTERAPIA";
-        $p->descripcion = "";
-        $p->save();
-
-        $p = new Especialidades();
-        $p->nombre = "TERAPIA INTENSIVA";
-        $p->descripcion = "";
-        $p->save();
-
-        $p = new Especialidades();
-        $p->nombre = "TISIONEUMONOLOGIA";
-        $p->descripcion = "";
-        $p->save();
-
-        $p = new Especialidades();
-        $p->nombre = "TOCOGINECOLOGIA";
-        $p->descripcion = "";
-        $p->save();
-
 
     }
 }
