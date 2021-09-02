@@ -70,7 +70,7 @@
                             <a class="nav-link text-nowrap text-uppercase text-secondary" href="{{route('especialidades.index')}}">Especialidades</a>
                           </li>
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="#">Estudios de Laboratorio</a>
+                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="/laboratorio">Estudios de Laboratorio</a>
                           </li>
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0">
                             <a class="nav-link text-nowrap text-uppercase text-secondary" href="#">Diagnóstico por Imágenes</a>

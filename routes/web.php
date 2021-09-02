@@ -33,6 +33,11 @@ Route::group(array('prefix' => 'especialidades'), function(){
 
 });
 
+// Ruta de sección 'laboratorio'
+Route::get('/laboratorio', function(){
+	return	view('laboratorio.laboratorio');
+});
+
 Route::group(array('prefix' => 'nuevoTurno'), function(){
 
 		// Route::get('/t',	'nuevoTurnom\NuevoTurnoController@index');
