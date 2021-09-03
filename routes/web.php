@@ -30,6 +30,7 @@ Route::group(array('prefix' => 'inicio'), function(){
 // Route::get('/especialidades', 'Especialidades\SpecialtiesController@specialties');
 Route::group(array('prefix' => 'especialidades'), function(){
 	Route::get('/',	'Especialidades\EspecialidadesController@index')->name('especialidades.index');
+	Route::get('/turnosasignadosdatatable',	'Especialidades\EspecialidadesController@turnosasignadosdatatable')->name('especialidades.turnosasignadosdatatable');
 
 });
 

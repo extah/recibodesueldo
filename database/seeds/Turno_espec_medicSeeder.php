@@ -16,10 +16,10 @@ class Turno_espec_medicSeeder extends Seeder
     {
         //
         $p = new Turno_espec_medic();
-        $tupla = Especialidades::where('id', 11)->get()->first();
-        echo $tupla->id;
-        $p->id_especialidades = $tupla->id;
-        $p->id_medico = 1;
+        $especialidad = Especialidades::where('id', 1)->get()->first();
+        $p->id_especialidades = $especialidad->id;
+        $medico = Especialidades::where('id', 1)->get()->first();
+        $p->id_medico = $medico->id;
         $p->dia_horario = 'Lunes 12 hs, miércoles 13 hs y jueves 10 hs';
         $p->pami = 'NO';
         $p->obra_social = "IOMA bono  A";

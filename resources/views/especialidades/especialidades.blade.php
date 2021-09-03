@@ -1,7 +1,13 @@
 @extends('template/template')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/especialidades.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('css/especialidades.css') }}"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css"> -->
+
+    
+    
 @endsection
 
 @section('content')
@@ -59,7 +65,45 @@
                               @endforeach
                             </select>
                           </div>
+
                     </div>
+                    <div class="d-grid gap-2 col-4 mx-auto">
+                            <button id="btn" class="btn btn-primary" type="button">Buscar</button>
+                            <!-- <button class="btn btn-primary" type="button">Button</button> -->
+                    </div>
+<br>
+                    <!-- <div class="modal" id="dataWrapper" style="display:none"> -->
+                    <!-- <div class="dataWrapper" style="display:none"> -->
+                      <div class="container">
+                          <table id="tablaturnos" class="table table-striped dt-responsive nowrap" style="width:100%">
+                              <thead>
+                                  <tr>
+                                      <th>ESPECIALIDAD</th>
+                                      <th>NOMBRE</th>
+                                      <th>DIAS Y HORARIOS DE ATENCION</th>
+                                      <th>PAMI</th>
+                                      <th>OBRAS SOCIALES</th>
+                                      <th>CONSULTA PARTICULAR</th>
+                                      <th>OTROS</th>
+                                  </tr>
+                              </thead>
+                              <!-- <tbody>
+
+                              </tbody> -->
+                              <tfoot>
+                                  <tr>
+                                      <th>ESPECIALIDAD</th>
+                                      <th>NOMBRE</th>
+                                      <th>DIAS Y HORARIOS DE ATENCION</th>
+                                      <th>PAMI</th>
+                                      <th>OBRAS SOCIALES</th>
+                                      <th>CONSULTA PARTICULAR</th>
+                                      <th>OTROS</th>
+                                  </tr>
+                              </tfoot>
+                          </table>
+                      </div>
+                    <!-- </div> -->
                     <div class="col-12 d-flex mx-auto my-4">
                         <div class="container col-8 __botones-servicios mx-auto px-0 d-flex flex-column flex-sm-column flex-md-row flex-lg-row ">
                             <a class="col-12 col-sm-12 col-md-4 col-lg-4 nav-link d-flex d-inline-block px-1 m-0" href="#"><img class="img-fluid px-0" src="images/botones/portal-paciente-grande.jpg" alt="Portal del paciente"></a>
@@ -74,5 +118,111 @@
 @endsection
 
 @section('js')
-    
+
+<script>
+
+  $(document).on('click', '#btn', function(){
+    $('#dataWrapper').modal('show');
+// if( !$('.dataWrapper').is(':visible') ) {
+//   $('.dataWrapper').show();
+// } 
+// else {
+//   $('.dataWrapper').hide();
+// }
+
+
+});
+
+$(document).ready(function() {
+
+  var opcion;
+  opcion = 2;
+  // tablaturnos = $('#tablaturnos').DataTable(
+  $('#tablaturnos').DataTable( 
+        {
+
+        // "dom": '<"dt-buttons"Bf><"clear">lirtp',
+        // "ajax":{            
+        //                 "headers": { 'X-CSRF-TOKEN': $('meta[name="csrf-token_entrada"]').attr('content') },    
+        //                 "url": "{{route('turnosadmin.turnosasignadosdatatable')}}", 
+        //                 "method": 'post', //usamos el metodo POST
+        //                 "data":{
+        //                     // '_token': $('input[name=_token]').val(),
+        //                     opcion:opcion}, //enviamos opcion 1 para que haga un SELECT
+        //                 "dataSrc":""
+        //             },
+        "ajax": "{{route('especialidades.turnosasignadosdatatable')}}",
+        "columns": [
+                        { data: "id_especialidades" , className: "text-center"},
+                        { data: "id_medico" , className: "text-center"},
+                        { data: "dia_horario" ,  },
+                        { data: "pami" ,  },
+                        { data: "obra_social" ,  },
+                        { data: "consulta_particular" ,  },   
+                        { data: "otros" ,  },                                             
+                        // { data: "Apellido" },
+                    ],
+        "autoWidth": true,
+         "order": [[ 0, "asc" ]],
+         "paging":   true,
+         "ordering": true,
+         "responsive": true,
+         "info":     false,
+         "dom": 'Bfrtilp',
+        //  "data": dataSet,
+
+        //  "buttons": [ 'copy', 'csv', 'excel', 'pdf', 'print' ],
+         "language": {
+                        "sProcessing":     "Procesando...",
+                        "sLengthMenu":     "Mostrar _MENU_ registros",
+                        "sZeroRecords":    "No se encontraron resultados",
+                        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                        "sSearch":         "Buscar:",
+                        "sInfoThousands":  ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst":    "Primero",
+                            "sLast":     "Último",
+                            "sNext":     "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        },
+                        "buttons": {
+                            "copy": "Copiar",
+                            "colvis": "Visibilidad"
+                        }
+                    },
+
+            // "buttons":[
+            //     {
+            //         extend:    'excelHtml5',
+            //         text:      '<i class="fas fa-file-excel"></i> EXCEL ',
+            //         titleAttr: 'Exportar a Excel',
+            //         className: 'btn btn-success'
+            //     },
+            //     {
+            //         extend:    'pdfHtml5',
+            //         text:      '<i class="fas fa-file-pdf"></i> PDF',
+            //         titleAttr: 'Exportar a PDF',
+            //         className: 'btn btn-danger'
+            //     },
+            //     {
+            //         extend:    'print',
+            //         text:      '<i class="fa fa-print"></i> IMPRIMIR',
+            //         titleAttr: 'Imprimir',
+            //         className: 'btn btn-info'
+            //     },
+            //  ]                 
+        });
+
+} );
+
+</script>
+
 @endsection
