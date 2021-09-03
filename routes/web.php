@@ -34,13 +34,13 @@ Route::group(array('prefix' => 'especialidades'), function(){
 });
 
 // Ruta de sección 'laboratorio'
-Route::group(array('prefix' => 'laboratorio'), function(){
-	Route::get('/',	'Laboratorio\LaboratorioController@index')->name('laboratorio.index');
+// Route::group(array('prefix' => 'laboratorio'), function(){
+// 	Route::get('/',	'Laboratorio\LaboratorioController@index')->name('laboratorio.index');
 
-});
-// Route::get('/laboratorio', function(){
-// 	return	view('laboratorio.laboratorio');
 // });
+Route::get('/laboratorio', function(){
+	return	view('laboratorio.laboratorio');
+});
 
 Route::group(array('prefix' => 'nuevoTurno'), function(){
 
