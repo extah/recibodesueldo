@@ -13,4 +13,14 @@ class Especialidades extends Model
     protected $fillable = ['id', 'nombre', 'descripcion', 'fecha_alta'];
     
     public $timestamps  = false;
+
+    
+    public function especialidades(){
+        return $this->belongsTo(Especialidades::class);
+    }
+
+    public function esEspecialidad($id){
+        $i = Especialidades::where('id', '=', $id)->first();
+        return 10;
+    }
 }
