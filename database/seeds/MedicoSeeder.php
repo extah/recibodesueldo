@@ -556,8 +556,8 @@ class MedicoSeeder extends Seeder
 
         $p = new Medico();
         $p->numero_matricula = "";
-        $p->nombre = "Ceclilia";
-        $p->apellido = "Gerónimo";
+        $p->nombre = "Gerónimo";
+        $p->apellido = "Ceclilia";
         $p->fecha_nacimiento = date('Y-m-d H:i:s', strtotime('2021-09-02 23:12:48'));
         $p->dni = 0;
         $p->cuit = 0;
