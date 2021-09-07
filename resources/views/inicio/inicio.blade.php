@@ -19,7 +19,7 @@
 
           <div class="__noticia col-12 col-sm-12 col-md-12 col-lg-8 d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 __img-noticia d-flex">
-              <img class="img-fluid d-flex p-2" src="images/noticia-vanuna.jpg" alt="vacuna">
+              <img class="img-fluid d-flex p-2" src="{{ asset('images/noticias/noticia-vanuna.jpg')}}" alt="vacuna">
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 __descripcion-noticia justify-content-center align-self-center p-2">
               <h4 class="col-12 d-block d-flex mt-auto">Lorem ipsum dolor sit.</h4>

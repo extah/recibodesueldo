@@ -34,11 +34,25 @@ Route::group(array('prefix' => 'especialidades'), function(){
 
 });
 
-// Ruta de sección 'laboratorio'
+// Ruta de sección 'Laboratorio'
 Route::group(array('prefix' => 'laboratorio'), function(){
 	Route::get('/',	'Laboratorio\LaboratorioController@index')->name('laboratorio.index');
 
 });
+
+// Ruta de sección 'La Clínica'
+Route::group(array('prefix' => 'laclinica'), function(){
+	Route::get('/',	'laclinica\LaclinicaController@index')->name('laclinica.index');
+
+});
+
+// Ruta de sección 'Cooperativa'
+Route::group(array('prefix' => 'cooperativa'), function(){
+	Route::get('/',	'cooperativa\CooperativaController@index')->name('cooperativa.index');
+
+});
+
+
 // Route::get('/laboratorio', function(){
 // 	return	view('laboratorio.laboratorio');
 // });
