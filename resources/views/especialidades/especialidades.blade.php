@@ -1,13 +1,15 @@
 @extends('template/template')
 
 @section('css')
+<<<<<<< HEAD
     <link rel="stylesheet" href="{{ asset('css/especialidades.css') }}">
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css"> -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css"> -->
+=======
+    <!-- <link rel="stylesheet" href="{{ asset('css/especialidades.css') }}"> -->
+>>>>>>> 8d5c0e5da4d2f7c209dc6a7d2309b8139111b625
 
-    
-    
 @endsection
 
 @section('content')
@@ -28,82 +30,112 @@
                     <div class="col-8 d-flex flex-row justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start mx-auto p-0">
                         <h6 class="__subtitulo d-flex d-inline-block text-center text-sm-center text-md-center text-lg-start pl-lg-3">Encuentre la especialidad o el médico que necesita</h6>
                     </div>
+
                     <div class="col-8 d-flex flex-column flex-sm-column flex-md-row flex-lg-row justify-content-center justify-content-sm-center justify-content-md-between justify-content-between mx-auto p-0">
                         <div class="dropdown my-2 mx-auto mx-sm-auto mx-md-auto mx-lg-0 py-2">
-                            <!-- <button class="btn btn-block btn-outline-white border-bottom dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                              Búsqueda por especialidad...
+                                    
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEspecialidad">
+                              <i class="fas fa-search-plus"></i> Buscar por Especialidad
                             </button>
-                            <ul class="dropdown-menu col-12" aria-labelledby="dropdownMenuButton1">
-                              <li><a class="dropdown-item" href="#">Action</a></li>
-                              <li><a class="dropdown-item" href="#">Another action</a></li>
-                              <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul> -->
-                            <!-- <label class="formItem" for="select_especialidades"> <b>Seleccione la especialidad</b></label> -->
-                            <select name="select_especialidades" id="select_especialidades" class="form-control" required>
-                              <option value="">-Seleccioná una especialidad-</option>
-                              @foreach($especialidades as $especialidad)
-                                <option value="{{ $especialidad->id }}" offset="1">{{ $especialidad->nombre }}</option>
-                              
-                              @endforeach
-                            </select>
-                          </div>
-    
+                    
+                  
+                            <!-- Modal -->
+                            <div class="modal fade" id="modalEspecialidad" tabindex="-1" aria-labelledby="modalEspecialidadLabel" aria-hidden="true" >
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header" style="background-color: rgb(54, 105, 199)">
+                                    <h5 class="modal-title" id="modalEspecialidadLabel" style="color: blanchedalmond">Buscar por Especialidad</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  
+                                      <form id="formTurnosPorEspecialidad">    
+                                          <meta name="csrf-token" content="{{ csrf_token() }}">
+                                          <div class="modal-body">
+                                          
+                                            <select name="select_especialidades" id="select_especialidades" class="form-control" >
+                                                              <option value="">-Seleccioná una especialidad-</option>
+                                                              @foreach($especialidades as $especialidad)
+                                                                <option value="{{ $especialidad->id }}" offset="1">{{ $especialidad->nombre }}</option>
+                                                              
+                                                              @endforeach
+                                                            </select>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Buscar</button>
+                                          </div>
+                                      </form> 
+                          
+                          
+                                </div>
+                              </div>
+                            </div>
+                        </div>
                           <div class="dropdown my-2 mx-auto mx-sm-auto mx-md-auto mx-lg-0 py-2">
-                            <!-- <button class="btn btn-block btn-outline-white border-bottom dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                              Búsqueda por médico...
-                            </button>
-                            <ul class="dropdown-menu col-12" aria-labelledby="dropdownMenuButton2">
-                              <li><a class="dropdown-item" href="#">Action</a></li>
-                              <li><a class="dropdown-item" href="#">Another action</a></li>
-                              <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul> -->
                             
-                            <select name="select_medicos" id="select_medicos" class="form-control" required>
-                              <option value="">-Seleccioná un medico/a-</option>
-                              @foreach($medicos as $medico)
-                                  <option value="{{ $medico->id }}" offset="1">{{ $medico->nombre}} {{ $medico->apellido}} </option>
-                              @endforeach
-                            </select>
-                          </div>
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMedico">
+                                <i class="fas fa-search-plus"></i> Buscar por Medico
+                              </button>
+                              
+                            
+                              <!-- Modal -->
+                              <div class="modal fade" id="modalMedico" tabindex="-1" aria-labelledby="modalMedicoLabel" aria-hidden="true" >
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header" style="background-color: rgb(54, 105, 199)">
+                                      <h5 class="modal-title" id="modalMedicoLabel" style="color: blanchedalmond">Buscar por Medico</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    
+                                        <form id="formTurnosPorMedico">    
+                                            <meta name="csrf-token" content="{{ csrf_token() }}">
+                                            <div class="modal-body">
+                                            
+                                                <select name="select_medicos" id="select_medicos" class="form-control">
+                                                  <option value="">-Seleccioná un medico/a-</option>
+                                                  @foreach($medicos as $medico)
+                                                      <option value="{{ $medico->id }}" offset="1">{{ $medico->nombre}} {{ $medico->apellido}} </option>
+                                                  @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Buscar</button>
+                                            </div>
+                                        </form> 
+                            
+                            
+                                  </div>
+                                </div>
+                              </div>
 
-                    </div>
-                    <div class="d-grid gap-2 col-4 mx-auto">
-                            <button id="btn" class="btn btn-primary" type="button">Buscar</button>
-                            <!-- <button class="btn btn-primary" type="button">Button</button> -->
-                    </div>
-<br>
-                    <!-- <div class="modal" id="dataWrapper" style="display:none"> -->
-                    <!-- <div class="dataWrapper" style="display:none"> -->
-                      <div class="container">
+                            
+                          </div>  
+                          
+                    </div>      
+                    <br>
+                    <br>
+                        <div id ="tabla" class="container" style="display: none !important;">
                           <table id="tablaturnos" class="table table-striped dt-responsive nowrap" style="width:100%">
-                              <thead>
+                            <meta name="csrf-token_feriado" content="{{ csrf_token() }}">  
+                            <thead class="thead-dark text-center" style="background-color: rgb(54, 105, 199)">
                                   <tr>
-                                      <th>ESPECIALIDAD</th>
-                                      <th>NOMBRE</th>
-                                      <th>DIAS Y HORARIOS DE ATENCION</th>
-                                      <th>PAMI</th>
-                                      <th>OBRAS SOCIALES</th>
-                                      <th>CONSULTA PARTICULAR</th>
-                                      <th>OTROS</th>
+                                      <th style="color: blanchedalmond">ESPECIALIDAD</th>
+                                      <th style="color: blanchedalmond">NOMBRE</th>
+                                      <th style="color: blanchedalmond">DIAS Y HORARIOS DE ATENCION</th>
+                                      <th style="color: blanchedalmond">PAMI</th>
+                                      <th style="color: blanchedalmond">OBRAS SOCIALES</th>
+                                      <th style="color: blanchedalmond">CONSULTA PARTICULAR</th>
+                                      <th style="color: blanchedalmond">OTROS</th>
                                   </tr>
                               </thead>
                               <!-- <tbody>
 
                               </tbody> -->
-                              <tfoot>
-                                  <tr>
-                                      <th>ESPECIALIDAD</th>
-                                      <th>NOMBRE</th>
-                                      <th>DIAS Y HORARIOS DE ATENCION</th>
-                                      <th>PAMI</th>
-                                      <th>OBRAS SOCIALES</th>
-                                      <th>CONSULTA PARTICULAR</th>
-                                      <th>OTROS</th>
-                                  </tr>
-                              </tfoot>
                           </table>
                       </div>
-                    <!-- </div> -->
+
+
                     <div class="col-12 d-flex mx-auto my-4">
                         <div class="container col-8 __botones-servicios mx-auto px-0 d-flex flex-column flex-sm-column flex-md-row flex-lg-row ">
                             <a class="col-12 col-sm-12 col-md-4 col-lg-4 nav-link d-flex d-inline-block px-1 m-0" href="#"><img class="img-fluid px-0" src="images/botones/portal-paciente-grande.jpg" alt="Portal del paciente"></a>
@@ -119,46 +151,24 @@
 
 @section('js')
 
+
 <script>
-
-  $(document).on('click', '#btn', function(){
-    $('#dataWrapper').modal('show');
-// if( !$('.dataWrapper').is(':visible') ) {
-//   $('.dataWrapper').show();
-// } 
-// else {
-//   $('.dataWrapper').hide();
-// }
-
-
-});
 
 $(document).ready(function() {
 
-  var opcion;
-  opcion = 2;
+  var fecha, opcion;
+        opcion = 2;
   // tablaturnos = $('#tablaturnos').DataTable(
-  $('#tablaturnos').DataTable( 
+    tablaturnos = $('#tablaturnos').DataTable( 
         {
 
-        // "dom": '<"dt-buttons"Bf><"clear">lirtp',
-        // "ajax":{            
-        //                 "headers": { 'X-CSRF-TOKEN': $('meta[name="csrf-token_entrada"]').attr('content') },    
-        //                 "url": "{{route('turnosadmin.turnosasignadosdatatable')}}", 
-        //                 "method": 'post', //usamos el metodo POST
-        //                 "data":{
-        //                     // '_token': $('input[name=_token]').val(),
-        //                     opcion:opcion}, //enviamos opcion 1 para que haga un SELECT
-        //                 "dataSrc":""
-        //             },
-        "ajax": "{{route('especialidades.turnosasignadosdatatable')}}",
         "columns": [
-                        { data: "id_especialidades" , className: "text-center"},
-                        { data: "id_medico" , className: "text-center"},
+                        { data: "especialidad" ,},
+                        { data: "nombre_medico" ,},
                         { data: "dia_horario" ,  },
-                        { data: "pami" ,  },
+                        { data: "pami" ,  className: "text-center"},
                         { data: "obra_social" ,  },
-                        { data: "consulta_particular" ,  },   
+                        { data: "consulta_particular" ,  className: "text-center"},   
                         { data: "otros" ,  },                                             
                         // { data: "Apellido" },
                     ],
@@ -220,9 +230,112 @@ $(document).ready(function() {
             //     },
             //  ]                 
         });
+        // opcion = 1;
+        $('#formTurnosPorEspecialidad').submit(function(e){                         
+                e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
+                
+                select_especialidades = $.trim($('#select_especialidades').val()); 
+                // select_medicos =  $.trim($('#select_medicos').val());
+                // console.log(select_medicos); 
+                // if (select_especialidades === null) {
+                //   select_medicos = 0;
+                //   console.log(select_medicos);
+                  
+                // }
+                // else
+                // {
+                //   select_especialidades = 0;
+                // }
+                // alert(select_especialidades);  
+                // descripcion = $.trim($('#descripcion').val());
+                opcion = 1; 
+                $('#tablaturnos').DataTable().clear().draw(); 
+                
+                $('#tabla').show();       
+                $.ajax({
+                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                    url: "{{route('especialidades.turnosasignadosdatatable')}}",
+                    type: "POST",
+                    datatype:"json",    
+                    data:  {
+                        '_token': $('input[name=_token]').val(),
+                        select_especialidades:select_especialidades, opcion:opcion},    
+                    // success: function(data) {
+                    //   tablaturnos.ajax.reload(null, false);
+                    //   // alert(data);
+                    //     // swal("Exito!", "", "success"); 
+                    // }
+                    success: function(data) {
+                        // console.log(data);
+
+                        var text = data;
+                        var data = JSON.parse(text);
+
+                        tablaturnos.rows.add(data).draw();
+
+                        // swal("Se genero el feriado con Exito!", "", "success"); 
+                    },
+                });	
+
+                // $('#exampleModal').modal('hide');	 
+            // $('#modalCRUD').modal('hide');											     			
+        });
+
+        $('#formTurnosPorMedico').submit(function(e){                         
+                e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
+                
+                // select_especialidades = $.trim($('#select_especialidades').val()); 
+                select_medicos =  $.trim($('#select_medicos').val());
+                // console.log(select_medicos);
+                // console.log(select_especialidades); 
+                // console.log(select_medicos); 
+                // if (select_especialidades === null) {
+                //   select_medicos = 0;
+                //   console.log(select_medicos);
+                  
+                // }
+                // else
+                // {
+                //   select_especialidades = 0;
+                // }
+                // alert(select_especialidades);  
+                // descripcion = $.trim($('#descripcion').val());
+                opcion = 3; 
+                $('#tablaturnos').DataTable().clear().draw();  
+                $('#tabla').show(); 
+
+                $.ajax({
+                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                    url: "{{route('especialidades.turnosasignadosdatatable')}}",
+                    type: "POST",
+                    datatype:"json",    
+                    data:  {
+                        '_token': $('input[name=_token]').val(),
+                        select_medicos:select_medicos, opcion:opcion},    
+                    // success: function(data) {
+                    //   tablaturnos.ajax.reload(null, false);
+                    //   // alert(data);
+                    //     // swal("Exito!", "", "success"); 
+                    // }
+                    success: function(data) {
+                        // console.log(data);
+
+                        var text = data;
+                        var data = JSON.parse(text);
+
+                        tablaturnos.rows.add(data).draw();
+
+                        // swal("Se genero el feriado con Exito!", "", "success"); 
+                    },
+                });	
+
+                // $('#exampleModal').modal('hide');	 
+            // $('#modalCRUD').modal('hide');											     			
+        });
+
 
 } );
 
-</script>
 
+</script>
 @endsection

@@ -117,6 +117,11 @@ class EspecialidadesSeeder extends Seeder
         $p->save();
 
         $p = new Especialidades();
+        $p->nombre = "Pediatria";
+        $p->descripcion = "";
+        $p->save();
+
+        $p = new Especialidades();
         $p->nombre = "Imágenes";
         $p->descripcion = "";
         $p->save();
