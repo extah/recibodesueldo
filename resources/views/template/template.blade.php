@@ -48,16 +48,16 @@
                   <div class="__navbar-1 col-12 d-block d-flex pl-4 my-1">
                       <ul class="col-12 d-flex justify-content-center nav">
                           <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/guardia-web-off.png" onMouseOver="this.src='images/iconos/guardia-web-on.png'"onMouseOut="this.src='images/iconos/guardia-web-off.png'" width="140" height="45" class="d-flex" loading="lazy" alt="guardia-web"></a>
+                            <a class="nav-link" href="#"><img src="images/iconos/guardia-web-off.png" onMouseOver="this.src='images/iconos/guardia-web-on.png'"onMouseOut="this.src='images/iconos/guardia-web-off.png'" width="140" height="50" class="d-flex" loading="lazy" alt="guardia-web"></a>
                           </li>
                           <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/guardia-pediatrica-off.png" onMouseOver="this.src='images/iconos/guardia-pediatrica-on.png'"onMouseOut="this.src='images/iconos/guardia-pediatrica-off.png'" width="140" height="45" class="d-flex" loading="lazy" alt="guardia-pediatrica"></a>
+                            <a class="nav-link" href="#"><img src="images/iconos/guardia-pediatrica-off.png" onMouseOver="this.src='images/iconos/guardia-pediatrica-on.png'"onMouseOut="this.src='images/iconos/guardia-pediatrica-off.png'" width="140" height="50" class="d-flex" loading="lazy" alt="guardia-pediatrica"></a>
                           </li>
                           <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/whatsapp-off.png" onMouseOver="this.src='images/iconos/whatsapp-on.png'"onMouseOut="this.src='images/iconos/whatsapp-off.png'" width="140" height="45" class="d-flex" loading="lazy" alt="whatsapp"></a>
+                            <a class="nav-link" href="#"><img src="images/iconos/turnos-off.png" onMouseOver="this.src='images/iconos/turnos-on.png'"onMouseOut="this.src='images/iconos/turnos-off.png'" width="140" height="50" class="d-flex" loading="lazy" alt="turnos"></a>
                           </li>
                           <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/contacto-off.png" onMouseOver="this.src='images/iconos/contacto-on.png'"onMouseOut="this.src='images/iconos/contacto-off.png'" width="140" height="45" class="d-flex" loading="lazy" alt="contacto"></a>
+                            <a class="nav-link" href="#"><img src="images/iconos/contacto-off.png" onMouseOver="this.src='images/iconos/contacto-on.png'"onMouseOut="this.src='images/iconos/contacto-off.png'" width="140" height="50" class="d-flex" loading="lazy" alt="contacto"></a>
                           </li>
                         </ul>
                   </div>
@@ -74,7 +74,7 @@
                             <a class="nav-link text-nowrap text-uppercase text-secondary" href="{{route('especialidades.index')}}">Especialidades</a>
                           </li>
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="{{route('laboratorio.index')}}">Estudios de Laboratorio</a>
+                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="{{route('laboratorio.index')}}">Laboratorio</a>
                           </li>
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0">
                             <a class="nav-link text-nowrap text-uppercase text-secondary" href="#">Diagnóstico por Imágenes</a>
@@ -105,7 +105,7 @@
           </div>
           <ul class="navbar-nav d-flex flex-column justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start mx-auto">
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">La clínica</a>
+              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('laclinica.index')}}">La clínica</a>
             </li>
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0">
               <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Galería</a>
@@ -156,7 +156,7 @@
               <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Ministerio de Salud de la Nación </a>
             </li>
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0 d-flex">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Cooperativa Mosconi</a>
+              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('cooperativa.index')}}">Cooperativa Mosconi</a>
             </li>
           </ul>
         </div>

@@ -1,7 +1,7 @@
 @extends('template/template')
 
 @section('css')
-    <!-- <link rel="stylesheet" href="{{ asset('css/especialidades.css') }}"> -->
+    <link rel="stylesheet" href="{{ asset('css/especialidades.css') }}">
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css"> -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css"> -->
@@ -26,7 +26,7 @@
 
         <article class="container col-12 mx-auto p-0">
                     <div class="col-8 d-flex flex-row justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start mx-auto p-0">
-                        <h6 class="__subtitulo d-flex d-inline-block text-center text-sm-center text-md-center text-lg-start pl-lg-3">Encuentre la espacialidad o el médico que necesita</h6>
+                        <h6 class="__subtitulo d-flex d-inline-block text-center text-sm-center text-md-center text-lg-start pl-lg-3">Encuentre la especialidad o el médico que necesita</h6>
                     </div>
                     <div class="col-8 d-flex flex-column flex-sm-column flex-md-row flex-lg-row justify-content-center justify-content-sm-center justify-content-md-between justify-content-between mx-auto p-0">
                         <div class="dropdown my-2 mx-auto mx-sm-auto mx-md-auto mx-lg-0 py-2">
