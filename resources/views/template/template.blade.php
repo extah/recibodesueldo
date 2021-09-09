@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/scroller/2.0.5/css/scroller.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.3.3/css/fixedColumns.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.4/css/colReorder.bootstrap5.min.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.bootstrap5.min.css">
 
     @yield('css')
 
@@ -25,8 +30,9 @@
     <div class="__navbar container">
       <div class="row justify-content-center">
         <div class="col-12 col-md-12 col-lg-4 d-flex justify-content-center __logo px-0 my-auto">
-                <a class="navbar-brand d-flex mt-md-2 mx-auto" href="/">
+                <a class="navbar-brand d-flex mt-md-2 mx-auto" href="{{route('inicio.index')}}">
                     <img src="images/logos/logo_mosconi.png" width="200" height="70" class="d-inline-block align-top px-0 m-auto" alt="" loading="lazy">
+                    
                   </a>
             </div>
             <nav class="col-12 col-lg-8 navbar navbar-light bg-white mx-auto">
@@ -164,6 +170,10 @@
 <script src="https://cdn.datatables.net/1.11.0/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/scroller/2.0.5/js/dataTables.scroller.min.js"></script>
+<script src="https://cdn.datatables.net/fixedcolumns/3.3.3/js/dataTables.fixedColumns.min.js"></script>
+<script src="https://cdn.datatables.net/colreorder/1.5.4/js/dataTables.colReorder.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
 
 <script src="{{ asset('assets/fontawesome-5.15.3/js/all.js') }}"></script>
 
