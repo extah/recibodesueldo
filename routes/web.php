@@ -23,43 +23,22 @@ Route::get('/','Inicio\InicioController@index');
 
 Route::group(array('prefix' => 'inicio'), function(){
 		Route::get('/',	'Inicio\InicioController@index')->name('inicio.index');
+});
+
+Route::group(array('prefix' => 'empleado'), function(){
+	Route::post('/',	'empleado\EmpleadoController@index')->name('empleado.index');
+	Route::get('/descargar',	'empleado\EmpleadoController@descargarPDF')->name('empleado.descargarPDF');
+	Route::get('/mostrar',	'empleado\EmpleadoController@mostrarPDF')->name('empleado.mostrarPDF');
+	Route::post('/buscar',	'empleado\EmpleadoController@buscarPorMes')->name('empleado.buscarPorMes');
+});
+
+Route::group(array('prefix' => 'recibodesueldo'), function(){
+	Route::get('/',	'recibo\ReciboController@index')->name('recibo.index');
 
 });
 
-// Ruta de sección 'Especialidades'
-// Route::get('/especialidades', 'Especialidades\SpecialtiesController@specialties');
-Route::group(array('prefix' => 'especialidades'), function(){
-	Route::get('/',	'Especialidades\EspecialidadesController@index')->name('especialidades.index');
-	Route::post('/turnosasignadosdatatable',	'Especialidades\EspecialidadesController@turnosasignadosdatatable')->name('especialidades.turnosasignadosdatatable');
 
-});
 
-// Ruta de sección 'Laboratorio'
-Route::group(array('prefix' => 'laboratorio'), function(){
-	Route::get('/',	'Laboratorio\LaboratorioController@index')->name('laboratorio.index');
-
-});
-
-// Ruta de sección 'La Clínica'
-Route::group(array('prefix' => 'laclinica'), function(){
-	Route::get('/',	'laclinica\LaclinicaController@index')->name('laclinica.index');
-
-});
-
-// Ruta de sección 'Cooperativa'
-Route::group(array('prefix' => 'cooperativa'), function(){
-	Route::get('/',	'cooperativa\CooperativaController@index')->name('cooperativa.index');
-
-});
-
-Route::group(array('prefix' => 'portaldelpaciente'), function(){
-	Route::get('/',	'portaldelpaciente\PortaldelpacienteController@index')->name('portaldelpaciente.index');
-
-});
-
-// Route::get('/laboratorio', function(){
-// 	return	view('laboratorio.laboratorio');
-// });
 
 Route::group(array('prefix' => 'nuevoTurno'), function(){
 

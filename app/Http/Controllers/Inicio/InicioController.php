@@ -22,9 +22,11 @@ class InicioController extends Controller
 
 	    $inicio = "";
 		$esEmp = false;
+		$cuix = "";
 	   
     	return view('inicio.inicio', compact('inicio', 'esEmp'));
     }
+
 
 
 }

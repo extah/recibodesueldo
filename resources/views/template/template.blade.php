@@ -7,7 +7,7 @@
     <title>Clinica Mosconi</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link href='{{ asset("css/template-inicio.css") }}' rel="stylesheet">
+    <link href='{{ asset("css/inicio.css") }}' rel="stylesheet">
     <!--datables estilo bootstrap 5 CSS-->   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css">
@@ -26,59 +26,78 @@
 
 <main>
   
-  <header class="bg-white">
-    <div class="__navbar container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-12 col-lg-4 d-flex justify-content-center __logo px-0 my-auto">
-                <a class="navbar-brand d-flex mt-md-2 mx-auto" href="{{route('inicio.index')}}">
-                    <img src="images/logos/logo_mosconi.png" width="200" height="70" class="d-inline-block align-top px-0 m-auto" alt="" loading="lazy">
-                    
-                  </a>
-            </div>
-            <nav class="col-12 col-lg-8 navbar navbar-light bg-white mx-auto">
-              <div class="col-12 d-flex flex-column justify-content-center d-inline mx-auto">
-                  <div class="__navbar-1 col-12 d-block d-flex pl-4 my-1">
-                      <ul class="col-12 d-flex justify-content-center nav">
-                          <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/guardia-web-off.png" onMouseOver="this.src='images/iconos/guardia-web-on.png'"onMouseOut="this.src='images/iconos/guardia-web-off.png'" width="140" height="50" class="d-flex" loading="lazy" alt="guardia-web"></a>
-                          </li>
-                          <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/guardia-pediatrica-off.png" onMouseOver="this.src='images/iconos/guardia-pediatrica-on.png'"onMouseOut="this.src='images/iconos/guardia-pediatrica-off.png'" width="140" height="50" class="d-flex" loading="lazy" alt="guardia-pediatrica"></a>
-                          </li>
-                          <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/turnos-off.png" onMouseOver="this.src='images/iconos/turnos-on.png'"onMouseOut="this.src='images/iconos/turnos-off.png'" width="140" height="50" class="d-flex" loading="lazy" alt="turnos"></a>
-                          </li>
-                          <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/contacto-off.png" onMouseOver="this.src='images/iconos/contacto-on.png'"onMouseOut="this.src='images/iconos/contacto-off.png'" width="140" height="50" class="d-flex" loading="lazy" alt="contacto"></a>
-                          </li>
-                        </ul>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-be-1" role="navigation">
+      <div class="container">
+    
+          <a class="navbar-brand" href="#">
+              <img alt="Municipalidad de Berisso - Logo" src="{{URL::asset('images/img/logo-be-01.svg')}}">
+          </a>
+    
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-1" aria-controls="navbar-1" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+          <div class="collapse navbar-collapse" id="navbar-1">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-bold fs-5">
+
+                @if (!$esEmp)
+                  <li class="nav-item px-lg-2">
+                      <a class="nav-link active" aria-current="page" title="Gobierno Abierto" href="{{route('inicio.index')}}">Iniciar sesion</a>
+                  </li>
+                  @endif  
+                  @if ($esEmp)
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{ (($cuix)) ?? '' }}, {{ (($nombre)) ?? '' }}
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="{{route('inicio.index')}}">iniciar</a></li>
+                      <li><a class="dropdown-item" href="#">Ver Recibos</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Cerrar sesion</a></li>
+                    </ul>
                   </div>
+              @endif
 
-                  <!-- MenúMobile -->
-                  <nav class="container __navbar-2 col-12 d-block d-flex p-0 my-1 navbar navbar-expand-sm navbar-white bg-white">
-                    <div class="__menu-mobile ml-auto container-fluid justify-content-center">
-                      <button class="navbar-toggler mr-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                      </button>
-                      <div class="collapse navbar-collapse justify-content-between p-0 m-0 mt-sm-2" id="navbarTogglerDemo03">
-                        <ul class="col-sm-12 navbar-nav d-flex justify-content-center justify-content-sm-center justify-content-md-between justify-content-lg-start mb-2 mb-lg-0 mt-md-2">
-                          <li class="nav-item mx-auto mx-lg-0 px-lg-0 mt-4 mt-sm-0 mt-md-0 mt-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="{{route('especialidades.index')}}">Especialidades</a>
-                          </li>
-                          <li class="nav-item mx-auto mx-lg-0 px-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="{{route('laboratorio.index')}}">Laboratorio</a>
-                          </li>
-                          <li class="nav-item mx-auto mx-lg-0 px-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="#">Diagnóstico por Imágenes</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </nav>
-                  <!-- FinMenúMobile -->
 
+              </ul>
+
+          </div>
+      </div>
+    </nav>
+    <div class="bg-be-6 secondary-bar">
+      <div class="container">
+          <div class="row">
+              <div class="col-12 col-md-auto my-2 fs-3 text-center text-md-left">
+                  <a class="text-decoration-none ms-2" href="https://es-es.facebook.com/municipiodeberisso">
+                      <i class="fab fa-facebook-f color-be-4"></i>
+                  </a>
+                  <a class="text-decoration-none ms-2" href="https://www.instagram.com/municipiodeberisso/">
+                      <i class="fab fa-instagram color-be-4"></i>
+                  </a>
+                  <a class="text-decoration-none ms-2" href="https://twitter.com/munideberisso">
+                      <i class="fab fa-twitter color-be-4"></i>
+                  </a>
+                  <a class="text-decoration-none ms-2" href="https://www.youtube.com/user/prensaberisso">
+                      <i class="fab fa-youtube color-be-4"></i>
+                  </a>
+                  <a class="text-decoration-none ms-2" href="#">
+                      <i class="fas fa-map-marker-alt color-be-4"></i>
+                  </a>
+                  <a class="text-decoration-none ms-2" href="\">
+                      <i class="fas fa-mobile-alt color-be-4"></i>
+                  </a>
               </div>
-            </nav>
+    
+              <div class="col-12 col-md-auto my-2 ms-md-auto">
+                  <form class="search-form" action="#" method="GET">
+                      <div class="input-group">
+                          <input type="text" name="search" class="form-control bg-be-3 border-be-3" aria-describedby="search-button">
+                          <button class="btn btn-dark" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+                      </div>
+                  </form>
+              </div>
+          </div>
       </div>
     </div>
 </header>
@@ -88,78 +107,93 @@
 
 
 <!-- Footer -->
-<footer class="">
+<footer class="bg-be-4 py-4">
   <div class="container">
-    <div class="row justify-content-xs-center justify-content-sm-center justify-content-md-center justify-content-lg-between mx-auto mx-sm-auto mx-md-auto pl-lg-3">
-        <div class="col-12 col-md-5 col-lg-2 __institucional container-fluid justify-content-center justify-content-xs-center justify-content-sm-center justify-content-md-center justify-content-lg-start mx-auto mx-sm-auto mx-md-auto mx-lg-0 my-4 px-0">
-          <div class="d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start">
-            <h5 class="fs-5 text-white text-nowrap fw-bolder d-flex pb-3 p-auto">Institucional</h5>
+      <div class="row">
+          <div class="col-12 col-lg-4">
+              <h6 class="color-be-2 text-center bg-be-1 py-2 rounded-pill mb-3">
+                  Consejo Consultivo Comunitario
+              </h6>
+              <div class="text-center text-lg-start ps-0 ps-lg-4 ps-xl-5">
+                  <ul class="list-unstyled">
+                      <li>
+                          <a class="link-light text-decoration-none fs-4" title="Presentación" href="#">Presentación</a>
+                      </li>
+                      <li>
+                          <a class="link-light text-decoration-none fs-4" title="Encuentros presenciales" href="#">Encuentros presenciales</a>
+                      </li>
+                      <li>
+                          <a class="link-light text-decoration-none fs-4" title="Plan de acción" href="#">Plan de acción</a>
+                      </li>
+                      <li>
+                          <a class="link-light text-decoration-none fs-4" title="Evolución de acciones " href="#">Evolución de acciones</a>
+                      </li>
+                  </ul>
+              </div>
+            </div>            
+            <div class="col-12 col-lg-4">
+              <h6 class="color-be-2 text-center bg-be-1 py-2 rounded-pill mb-3">
+                  Dirección
+              </h6>
+              <div class="text-center text-lg-start ps-0 ps-lg-4 ps-xl-5">
+                  <div class="color-be-2 fs-4">
+                  Calle 6 y 166
+              </div>
+              <div class="color-be-2 fs-4">
+                  (1923) Berisso
+              </div>
+              <div class="color-be-2 fs-4">
+                  Teléfono: (0221) 464-5069
+              </div>
+              </div>
+            </div>            
+            <div class="col-12 col-lg-4">
+              <h6 class="color-be-2 text-center bg-be-1 py-2 rounded-pill mb-3">
+                  Seguí Nuestras Redes
+              </h6>
+              <div class="text-center text-lg-start ps-0 ps-lg-4 ps-xl-5">
+                  <ul class="list-unstyled">
+                      <li>
+                          <a class="link-light text-decoration-none fs-4" href="https://es-es.facebook.com/municipiodeberisso">Facebook</a>
+                      </li>
+                      <li>
+                          <a class="link-light text-decoration-none fs-4" href="https://www.instagram.com/municipiodeberisso/">Instagram</a>
+                      </li>
+                      <li>
+                          <a class="link-light text-decoration-none fs-4" href="https://twitter.com/munideberisso">Twitter</a>
+                      </li>
+                      <li>
+                          <a class="link-light text-decoration-none fs-4" href="https://www.youtube.com/user/prensaberisso">Youtube</a>
+                      </li>
+                  </ul>
+              </div>
+            </div>        
           </div>
-          <ul class="navbar-nav d-flex flex-column justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start mx-auto">
-            <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('laclinica.index')}}">La clínica</a>
-            </li>
-            <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Galería</a>
-            </li>
-            <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Novedades</a>
-            </li>
-            <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Cómo llegar</a>
-            </li>
-          </ul>
-        </div>
+          <div class="px-5">
+                <div class="row justify-content-md-center">
+                        <div class="col-6 col-lg-2">
+                            <img class="image-responsive p-md-2 p-lg-3" alt="Número de bomberos: 100" src="images/img/100.svg">
+                        </div>
 
-        <div class="col-12 col-md-5 col-lg-3 __contactos justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start mx-sm-auto mx-md-auto mx-lg-0 my-4">
-          {{-- <ul class="navbar-nav d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start flex-row mx-md-auto">
-            <li class="nav-item mx-2 p-1">
-              <a class="nav-link fs-5 text-nowrap text-white d-flex my-1 py-0" href="#"><i class="fab fa-facebook-f"></i></a>
-            </li>
-            <li class="nav-item mx-2 p-1">
-              <a class="nav-link fs-5 text-nowrap text-white d-flex my-1 py-0" href="#"><i class="fab fa-instagram"></i></a>
-            </li>
-            <li class="nav-item mx-2 p-1">
-              <a class="nav-link fs-5 text-nowrap text-white d-flex my-1 py-0" href="#"><i class="fab fa-twitter"></i></a>
-            </li>
-          </ul> --}}
-          <div class="d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start py-1">
-              <a class="nav-link fs-6 text-nowrap text-white text-left d-flex my-auto py-0" href="#"><p><i class=" fs-5 fas fa-phone-alt"></i> (221) 464-5881</p></a>
-          </div>
-          <div class="__direccion d-flex flex-column justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start">
-            <span class="nav-link fs-6 text-nowrap text-white text-left d-flex mx-auto mx-sm-auto mx-md-auto mx-lg-0 my-auto py-0">Calle 8 Laveratto 3419</span>
-            <span class="nav-link fs-6 text-nowrap text-white text-left d-flex mx-auto mx-sm-auto mx-md-auto mx-lg-0 my-auto py-0">B1923 Berisso</span>
-            <span class="nav-link fs-6 text-nowrap text-white text-left d-flex mx-auto mx-sm-auto mx-md-auto mx-lg-0 my-auto py-0">Provincia de Buenos Aires</span>
-          </div>
-        </div>
+                        <div class="col-6 col-lg-2">
+                            <img class="image-responsive p-md-2 p-lg-3" alt="Número de defensa civil: 103" src="images/img/103.svg">
+                        </div>
 
-        <div class="col-12 col-md-5 col-lg-3 __accesos-rapidos justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start mx-md-auto my-4 px-0">
-          <div class="d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start">
-            <h5 class="fs-5 text-white text-nowrap fw-bolder d-flex pb-3 p-auto">Accesos rápidos</h5>
-          </div>
-          <ul class="navbar-nav flex-column justify-content-center justify-content-sm-center justify-content-md-center justify-content-start mx-auto">
-            <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0 d-flex">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Municipalidad de Berisso</a>
-            </li>
-            <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0 d-flex">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Ministerio de Salud de la Prov. de Bs. As.</a>
-            </li>
-            <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0 d-flex">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Ministerio de Salud de la Nación </a>
-            </li>
-            <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0 d-flex">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('cooperativa.index')}}">Cooperativa Mosconi</a>
-            </li>
-          </ul>
-        </div>
+                        <div class="col-6 col-lg-2">
+                            <img class="image-responsive p-md-2 p-lg-3" alt="Número de same: 107" src="images/img/107.svg">
+                        </div>
 
-          <div class="col-12 col-md-5 col-lg-3 d-flex justify-content-md-center justify-content-lg-end __logo-footer mx-auto mx-md-auto mx-lg-0 my-4 my-sm-4 my-md-auto my-lg-0 align-items-lg-end">
-            <img class="d-flex mx-auto mx-lg-0 mb-lg-4" src="images/logos/logo_negativo.jpg" width="220" height="85" alt="logo_mosconi" loading="lazy">
-          </div>
+                        <div class="col-6 col-lg-2">
+                            <img class="image-responsive p-md-2 p-lg-3" alt="Número de violencia de género: 144" src="images/img/144.svg">
+                        </div>
+
+                        <div class="col-6 col-lg-2">
+                            <img class="image-responsive p-md-2 p-lg-3" alt="Número de policía: 911" src="images/img/911.svg">
+                        </div>
+                </div>        
+        </div>
     </div>
-  </div>
 </footer>
-
 </main>
 {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
