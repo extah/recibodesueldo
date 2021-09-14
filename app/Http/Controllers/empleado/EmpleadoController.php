@@ -112,8 +112,7 @@ class EmpleadoController extends Controller
         $mes = $datos[0]->mes;
         $mes_nom = $datos[0]->mes_nom;
         $anio = $datos[0]->anio;
-        $concepto = $datos[0]->concepto;
-        $descripcion = $datos[0]->descripcion;
+
         $legajo = $datos[0]->legajo;
         $dependencia = $datos[0]->dependencia;
         $antiguedad = $datos[0]->antiguedad;
@@ -193,16 +192,35 @@ class EmpleadoController extends Controller
             if(count($datos) > 0)
             {
                 $cantidad = count($datos);
-                $x = 28;
+
+                $xConcepto = 28;
+                $xHaberes_con_descuento = 100;
+                $xHaberes_sin_descuento = 126;
+                $xDescuentos = 152;
+
                 $y = 46;
-                // dd($descripcion);
-                $pdf->SetXY($x, $y);
-                $pdf->Write(8, $concepto . '-' . utf8_decode($descripcion));
-                
+
+
                 // dd($cantidad);
-                // for ($i=0; $i < $cantidad; $i++) { 
-                    
-                // }
+                for ($i=0; $i < $cantidad; $i++) { 
+                    $concepto = $datos[$i]->concepto;
+                    // dd($concepto);
+                    $descripcion = $datos[$i]->descripcion;
+
+                    $pdf->SetXY($xConcepto, $y);
+                    $pdf->Write(8, $concepto . '-' . utf8_decode($descripcion));
+
+                    $pdf->SetXY($xHaberes_con_descuento, $y);
+                    $pdf->Write(8, "1023.55");
+    
+                    $pdf->SetXY($xHaberes_sin_descuento, $y);
+                    $pdf->Write(8, "1023.55");
+    
+                    $pdf->SetXY($xDescuentos, $y);
+                    $pdf->Write(8, "1023.55");
+
+                    $y = $y + 4;
+                }
             }
             
 
