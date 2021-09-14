@@ -28,7 +28,7 @@ Route::group(array('prefix' => 'inicio'), function(){
 Route::group(array('prefix' => 'empleado'), function(){
 	Route::post('/',	'empleado\EmpleadoController@index')->name('empleado.index');
 	Route::get('/descargar',	'empleado\EmpleadoController@descargarPDF')->name('empleado.descargarPDF');
-	Route::get('/mostrar',	'empleado\EmpleadoController@mostrarPDF')->name('empleado.mostrarPDF');
+	Route::get('/mostrar/{tipo}/{mes}/{anio}/{cuix}',	'empleado\EmpleadoController@mostrarPDF')->name('empleado.mostrarPDF');
 	Route::post('/buscar',	'empleado\EmpleadoController@buscarPorMes')->name('empleado.buscarPorMes');
 });
 

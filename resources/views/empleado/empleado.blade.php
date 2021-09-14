@@ -11,7 +11,7 @@
 @section('content')
 
 
-    <article class="container col-12 mx-auto p-1"> 
+    <article class="container col-12 mx-auto p-0"> 
 
           <form action="{{route('empleado.buscarPorMes')}}" novalidate method="post" class="needs-validation" novalidate>
             {{ csrf_field() }}
@@ -25,14 +25,15 @@
                     <label class="formItem" for="fecha_hasta"> <b>Fecha Hasta</b></label>
                     <input class="form-control" data-date-format="yyyy/mm" id="fecha_hasta" name="fecha_hasta" required>
                   </div>
-                  <div class="col-sm-3 col-md-3 my-3 p-0">
-                    <label class="formItem" for="buscar"> <b></b></label>
-                    <button type="submit" class="form-control btn btn-primary" id="buscar" name="buscar">Buscar</button>
-                  </div>
+                  {{-- <div class="col-sm-3 col-md-3 my-3 p-0"> --}}
+                    {{-- <label class="formItem" for="buscar"></label> --}}
+                    <div class="d-grid col-sm-2 col-md-2 my-3 p-3">
+                      <button type="submit" class="btn btn-lg btn-primary" id="buscar" name="buscar">Buscar</button>
+                    </div>
                 </div>
               </div>
-              </form>
-
+          </form>
+        <hr>
 
         <div class="row">
           @foreach ($datos as $dato)
@@ -43,9 +44,9 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ $dato->mes_nom }} {{ $dato->anio }}</h5>
                   <p class="card-text">
-                    datos
+                    {{ $dato->tipo_detalle }}
                   </p>
-                  <a href="{{route('empleado.mostrarPDF')}}" class="btn btn-info"><i class="fas fa-eye"></i> VER</a>
+                  <a href="{{url('empleado/mostrar',['tipo' => $dato->tipo,'mes' => $dato->mes,'anio' => $dato->anio,'cuix' => $dato->cuil])}}" class="btn btn-info"><i class="fas fa-eye"></i> VER</a>
                   <a href="{{route('empleado.descargarPDF')}}" class="btn btn-success"><i class="fas fa-download"></i> DESCARGAR</a>
                   
                 </div>

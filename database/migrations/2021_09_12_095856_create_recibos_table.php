@@ -18,8 +18,8 @@ class CreateRecibosTable extends Migration
             $table->string('apellido', 55)->nullable();
             $table->string('nombre', 55)->nullable();
             $table->bigInteger('legajo')->nullable();
-            $table->dateTime('fecha_ingreso', 0)->nullable();
-            $table->dateTime('fecha_reingreso', 0)->nullable();
+            $table->date('fecha_ingreso', 0)->nullable();
+            $table->date('fecha_reingreso', 0)->nullable();
             $table->string('tipo_documento', 5)->nullable();
             $table->bigInteger('numero_documento')->nullable();
             $table->string('dependencia', 255)->nullable();
@@ -35,6 +35,7 @@ class CreateRecibosTable extends Migration
             $table->string('mes_nom', 50)->nullable();
             $table->bigInteger('anio')->nullable();
             $table->string('tipo', 1)->nullable();
+            $table->string('tipo_detalle', 35)->nullable();
             $table->double('total_haberes', 15, 2)->default(0)->nullable();
             $table->double('total_hasindto', 15, 2)->default(0)->nullable();
             $table->double('total_dto', 15, 2)->default(0)->nullable();

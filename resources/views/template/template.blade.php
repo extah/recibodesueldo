@@ -44,20 +44,22 @@
                   <li class="nav-item px-lg-2">
                       <a class="nav-link active" aria-current="page" title="Gobierno Abierto" href="{{route('inicio.index')}}">Iniciar sesion</a>
                   </li>
-                  @endif  
-                  @if ($esEmp)
-                  <div class="dropdown">
+                @endif  
+                @if ($esEmp)
+                  <div class="dropdown"> 
+
+
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                      {{ (($cuix)) ?? '' }}, {{ (($nombre)) ?? '' }}
+                        {{ (($cuix)) ?? '' }}, {{ (($nombre)) ?? '' }}
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
                       <li><a class="dropdown-item" href="{{route('inicio.index')}}">iniciar</a></li>
                       <li><a class="dropdown-item" href="#">Ver Recibos</a></li>
                       <li><hr class="dropdown-divider"></li>
                       <li><a class="dropdown-item" href="#">Cerrar sesion</a></li>
                     </ul>
                   </div>
-              @endif
+                @endif
 
 
               </ul>
