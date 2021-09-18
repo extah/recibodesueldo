@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        NotificarDeOficio::class,
+        // NotificarDeOficio::class,
+        Commands\EliminarSessions::class,
     ];
 
     /**
@@ -29,7 +30,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         
         // $schedule->command('piezas:notificarDeOficio')->everyFiveMinutes();
-        $schedule->command('piezas:notificarDeOficio')->daily();
+        // $schedule->command('piezas:notificarDeOficio')->daily();
+        // $schedule->command('test:eliminar')->everyMinute();
+        $schedule->command('test:eliminar')->everyFiveMinutes();
     }
 
     /**

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clinica Mosconi</title>
+    <title>Recibo de Sueldo Berisso</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href='{{ asset("css/inicio.css") }}' rel="stylesheet">
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.4/css/colReorder.bootstrap5.min.css">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.bootstrap5.min.css">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' rel='stylesheet' type='text/css'>
 
     @yield('css')
 
@@ -42,7 +43,10 @@
 
                 @if (!$esEmp)
                   <li class="nav-item px-lg-2">
-                      <a class="nav-link active" aria-current="page" title="Gobierno Abierto" href="{{route('inicio.index')}}">Iniciar sesion</a>
+                      <a class="nav-link active" aria-current="page" title="Iniciar Sesion" href="{{route('inicio.index')}}">Iniciar sesion</a>
+                  </li>
+                  <li class="nav-item px-lg-2">
+                      <a class="nav-link active" aria-current="page" title="Recibos" href="{{route('empleado.indexget')}}">Ver Recibos</a>
                   </li>
                 @endif  
                 @if ($esEmp)
@@ -50,13 +54,12 @@
 
 
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ (($cuix)) ?? '' }}, {{ (($nombre)) ?? '' }}
+                        {{ (($usuario)) ?? '' }}, {{ (($nombre)) ?? '' }}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item" href="{{route('inicio.index')}}">iniciar</a></li>
-                      <li><a class="dropdown-item" href="#">Ver Recibos</a></li>
+                      <li><a class="dropdown-item" href="{{route('empleado.home')}}">Mis Recibos</a></li>
                       <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Cerrar sesion</a></li>
+                      <li><a class="dropdown-item" href="{{route('empleado.cerrarsesion')}}">Cerrar sesion</a></li>
                     </ul>
                   </div>
                 @endif
@@ -86,7 +89,7 @@
                   <a class="text-decoration-none ms-2" href="#">
                       <i class="fas fa-map-marker-alt color-be-4"></i>
                   </a>
-                  <a class="text-decoration-none ms-2" href="\">
+                  <a class="text-decoration-none ms-2" href="#">
                       <i class="fas fa-mobile-alt color-be-4"></i>
                   </a>
               </div>
@@ -95,7 +98,7 @@
                   <form class="search-form" action="#" method="GET">
                       <div class="input-group">
                           <input type="text" name="search" class="form-control bg-be-3 border-be-3" aria-describedby="search-button">
-                          <button class="btn btn-dark" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+                          <button class="btn btn-dark" type="button" id="search-button"><i class="fas fa-search"></i></button>
                       </div>
                   </form>
               </div>
@@ -174,23 +177,23 @@
           <div class="px-5">
                 <div class="row justify-content-md-center">
                         <div class="col-6 col-lg-2">
-                            <img class="image-responsive p-md-2 p-lg-3" alt="Número de bomberos: 100" src="images/img/100.svg">
+                            <img class="image-responsive p-md-2 p-lg-3" alt="Número de bomberos: 100" src="{{URL::asset('images/img/100.svg')}}">
                         </div>
 
                         <div class="col-6 col-lg-2">
-                            <img class="image-responsive p-md-2 p-lg-3" alt="Número de defensa civil: 103" src="images/img/103.svg">
+                            <img class="image-responsive p-md-2 p-lg-3" alt="Número de defensa civil: 103" src="{{URL::asset('images/img/103.svg')}}">
                         </div>
 
                         <div class="col-6 col-lg-2">
-                            <img class="image-responsive p-md-2 p-lg-3" alt="Número de same: 107" src="images/img/107.svg">
+                            <img class="image-responsive p-md-2 p-lg-3" alt="Número de same: 107" src="{{URL::asset('images/img/107.svg')}}">
                         </div>
 
                         <div class="col-6 col-lg-2">
-                            <img class="image-responsive p-md-2 p-lg-3" alt="Número de violencia de género: 144" src="images/img/144.svg">
+                            <img class="image-responsive p-md-2 p-lg-3" alt="Número de violencia de género: 144" src="{{URL::asset('images/img/144.svg')}}">
                         </div>
 
                         <div class="col-6 col-lg-2">
-                            <img class="image-responsive p-md-2 p-lg-3" alt="Número de policía: 911" src="images/img/911.svg">
+                            <img class="image-responsive p-md-2 p-lg-3" alt="Número de policía: 911" src="{{URL::asset('images/img/911.svg')}}">
                         </div>
                 </div>        
         </div>
@@ -212,6 +215,8 @@
 <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
 
 <script src="{{ asset('assets/fontawesome-5.15.3/js/all.js') }}"></script>
+<script src='{{ asset("assets/toastr/toastr.min.js") }}'></script>
+<script src='{{ asset("assets/sweetalert/sweet-alert.min.js") }}'></script>
 
 
   @yield('js')

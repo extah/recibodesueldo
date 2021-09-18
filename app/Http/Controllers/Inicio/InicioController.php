@@ -20,11 +20,18 @@ class InicioController extends Controller
 
 	public function index(Request $request){
 
+		// $id = $request->session->id;
+		// $id = $request->session()->get('id');
+		
+		// dd($id);
+		// dd($request);
+		// session(['session'=>$usuario]);
 	    $inicio = "";
 		$esEmp = false;
 		$cuix = "";
+		$status_info = "";
 	   
-    	return view('inicio.inicio', compact('inicio', 'esEmp'));
+    	return view('inicio.inicio', compact('inicio', 'esEmp', 'status_info'));
     }
 
 

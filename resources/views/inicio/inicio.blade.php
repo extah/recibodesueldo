@@ -190,7 +190,7 @@ body {
 }
 
 .form-signin input, .form-signup input {
-  color: #ffffff;
+  color: #1f0404;
   font-size: 13px;
 }
 
@@ -536,56 +536,40 @@ a.btn-goback:hover {
                 </ul>
             </div>
             <div ng-app ng-init="checked = false">
-                                <form class="form-signin" action="{{route('empleado.index')}}" method="post" id="formIniciarSesion" name="formIniciarSesion">
-                                  {{ csrf_field() }}      
-                                  {{-- <label for="username">email</label> --}}
-                                        <input class="form-styling" type="text" name="username" placeholder="Correo Electronico"/>
-                                        {{-- <label for="password">Contraseña</label> --}}
-                                        <input class="form-styling" type="text" name="password" placeholder="Contraseña"/>
+                                <form class="form-signin" action="{{route('empleado.home')}}" method="post" id="formIniciarSesion" name="formIniciarSesion">
+                                        @csrf
+                                        <input class="form-styling" type="text" name="username" placeholder="Cuit o DNI"/>
+                                        <input class="form-styling" type="password" name="password" placeholder="Contraseña"/>
                                         <input type="checkbox" id="checkbox"/>
                                         <label for="checkbox" ><span class="ui"></span>recordar inicio de sesion</label>
-                                        {{-- <div class="btn-animate">
-                                            <a class="btn-signin">Iniciar sesion</a>
-                                        </div> --}}
+                                        {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}" /> --}}
                                         <div class="btn-animate">
                                           <a onclick="document.getElementById('formIniciarSesion').submit()" class="btn-signin">Iniciar sesion</a>
                                           
                                         </div>
-                                    </form>
+                                  </form>
                                     
-                                    <form class="form-signup" action="" method="post" name="form">
-                                        {{-- <label for="fullname">Nombre y Apellido</label> --}}
+                                    <form accept-charset="utf-8" class="form-signup" action="{{route('empleado.registrarse')}}" method="post" id="formRegistrarse" name="formRegistrarse">
+                                      {{-- {{ csrf_field() }} --}}
+                                          @csrf
                                         <input class="form-styling" type="text" name="fullname" placeholder="Nombre y Apellido"/>
-                                        {{-- <label for="email">Correo Electronico</label> --}}
-                                        <input class="form-styling" type="text" name="email" placeholder="Correo Electronico"/>
-                                        {{-- <label for="password">Contraseña</label> --}}
-                                        <input class="form-styling" type="text" name="password" placeholder="Contraseña"/>
-                                        {{-- <label for="confirmpassword">Confirmar contraseña</label> --}}
-                                        <input class="form-styling" type="text" name="confirmpassword" placeholder="Confirmar Contraseña"/>
+                                        <input class="form-styling" type="text" name="cuit" placeholder="Cuil/Cuit"/>
+                                        <input class="form-styling" type="text" name="numero_documento" placeholder="Numero Documento"/>
+                                        <input class="form-styling" type="password" name="password" placeholder="Contraseña"/>
+                                        <input class="form-styling" type="password" name="confirmpassword" placeholder="Confirmar Contraseña"/>
+                                        {{-- <button type="submit">Enviar formulario</button> --}}
                                         <div class="">
-                                            <a class="btn-signup">Registrarse</a>
+                                            <a onclick="document.getElementById('formRegistrarse').submit()" class="btn-signup">Registrarse</a>
                                         </div>
                                 </form>
-                
-                    {{-- <div  class="success">
-                        <svg width="270" height="270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                viewBox="0 0 60 60" id="check" ng-class="checked ? 'checked' : ''">
-                        <path fill="#ffffff" d="M40.61,23.03L26.67,36.97L13.495,23.788c-1.146-1.147-1.359-2.936-0.504-4.314
-                            c3.894-6.28,11.169-10.243,19.283-9.348c9.258,1.021,16.694,8.542,17.622,17.81c1.232,12.295-8.683,22.607-20.849,22.042
-                            c-9.9-0.46-18.128-8.344-18.972-18.218c-0.292-3.416,0.276-6.673,1.51-9.578" />
-                        <div class="successtext">
-                            <p> Gracias por registrase!</p>
-                        </div>
-                    </div> --}}
                 </div>
-                <br><br> <br> br
+                <br><br> <br>
                 <div class="forgot">
                         <a href="#">Olvido la contraseña?</a>
                 </div>
-                
             </div>
             
-            <a id="refresh" value="Refresh" onClick="history.go()">
+            {{-- <a id="refresh" value="Refresh" onClick="history.go()">
             <svg class="refreshicon"   version="1.1" id="Capa_1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 width="25px" height="25px" viewBox="0 0 322.447 322.447" style="enable-background:new 0 0 322.447 322.447;"
                 xml:space="preserve">
@@ -596,14 +580,13 @@ a.btn-goback:hover {
                         c-6.566,2.134-10.16,9.186-8.027,15.751l14.74,45.368c1.715,5.283,6.615,8.642,11.885,8.642c1.279,0,2.582-0.198,3.865-0.614
                         l45.369-14.738C320.371,243.946,323.965,236.895,321.832,230.327z"/>
             </svg>
-            </a>
+            </a> --}}
         </div>
     </article>
 @endsection
 
 @section('js')
-{{-- <script src="js/jquery.js"></script> --}}
-{{-- <script src="js/main.js"></script> --}}
+
 <script>
     $(function() {
         $(".btn").click(function() {
@@ -617,14 +600,14 @@ a.btn-goback:hover {
         });
     });
     
-    $(function() {
-        $(".btn-signup").click(function() {
-      $(".nav_inicio").toggleClass("nav-up_inicio");
-      $(".form-signup-left").toggleClass("form-signup-down");
-      $(".success").toggleClass("success-left"); 
-      $(".frame").toggleClass("frame-short");
-        });
-    });
+    // $(function() {
+    //     $(".btn-signup").click(function() {
+    //   $(".nav_inicio").toggleClass("nav-up_inicio");
+    //   $(".form-signup-left").toggleClass("form-signup-down");
+    //   $(".success").toggleClass("success-left"); 
+    //   $(".frame").toggleClass("frame-short");
+    //     });
+    // });
     
     // $(function() {
     //     $(".btn-signin").click(function() {
@@ -638,5 +621,37 @@ a.btn-goback:hover {
     //     });
     // });
 
+</script>
+<script>
+    @if (Session::get('status_error'))
+            toastr.error( '{{ session('message') }}', 'ERROR', {
+                // "progressBar": true,
+                "closeButton": true,
+                "positionClass": "toast-bottom-right",
+                "timeOut": "10000",
+            });   
+    @endif 
+</script>
+
+<script>
+    @if (Session::get('status_info'))
+            toastr.info( '{{ session('message') }}', 'Informar', {
+                // "progressBar": true,
+                "closeButton": true,
+                "positionClass": "toast-bottom-right",
+                "timeOut": "10000",
+            });   
+    @endif 
+</script>
+
+<script>
+  // @if ($status_info)
+  //         toastr.info(" {{ $message }}", 'Informar', {
+  //             // "progressBar": true,
+  //             "closeButton": true,
+  //             "positionClass": "toast-bottom-right",
+  //             "timeOut": "10000",
+  //         });   
+  // @endif 
 </script>
 @endsection
