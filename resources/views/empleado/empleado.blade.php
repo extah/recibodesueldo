@@ -42,7 +42,23 @@
                     <div class="card-body">
                       <h5 class="card-title">{{ $dato->mes_nom }} {{ $dato->anio }}</h5>
                       <p class="card-text">
-                        {{ $dato->tipo_detalle }}
+
+                        @if ($dato->tipo == "N")
+                            Sueldo Mensual
+                            
+                        @elseif ($dato->tipo == "A")
+                            Ayuda Escolar
+                            
+                        @elseif ($dato->tipo == "J")
+                            Liq. Adicional
+                            
+                        @elseif ($dato->tipo == "S")
+                            S.A.C
+                           
+                        @elseif ($dato->tipo == "X")
+                            Horas Extras
+                        @endif
+                        
                       </p>
                       <a href="{{url('empleado/mostrar',['tipo' => $dato->tipo,'mes' => $dato->mes,'anio' => $dato->anio])}}" class="btn btn-info"><i class="fas fa-eye"></i> VER</a>
                       <a href="{{url('empleado/descargar',['tipo' => $dato->tipo,'mes' => $dato->mes,'anio' => $dato->anio])}}" class="btn btn-success"><i class="fas fa-download"></i> DESCARGAR</a>
