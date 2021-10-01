@@ -40,6 +40,7 @@ class RecibosOriginales extends Migration
             $table->double('total_hasindto', 15, 2)->default(0)->nullable();
             $table->double('total_dto', 15, 2)->default(0)->nullable();
             $table->smallInteger('concepto')->nullable();
+            $table->double('cantidad', 15, 2)->default(0)->nullable();
             $table->string('descripcion', 255)->nullable();
             $table->double('importe', 15, 2)->default(0)->nullable();
 

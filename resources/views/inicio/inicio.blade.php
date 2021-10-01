@@ -108,7 +108,7 @@ body {
 .form-signin {
   width: 360px;
   height: 360px;
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: 300;
   padding-left: 37px;
   padding-right: 37px;
@@ -123,9 +123,9 @@ body {
 }
 
 .form-signup {
-  width: 360px;
-  height: 375px;
-	font-size: 16px;
+  width: 375px;
+  height: 360px;
+	font-size: 13px;
 	font-weight: 300;
   padding-left: 37px;
   padding-right: 37px;
@@ -220,7 +220,7 @@ label {
 .form-signin input:focus, textarea:focus, .form-signup input:focus, textarea:focus {
     background: rgba(255,255,255,.3);
     border: none; 
-    padding-right: 40px;
+    /* padding-right: 40px; */
     transition: background .5s ease;
  }
 
@@ -326,8 +326,8 @@ label {
 }
 
 .btn-signin {
-    color: #ffffff;
-    background-color: #1059FF;
+  color: #ffffff;
+  background-color: #1059FF;
   float: left;
   padding-top: 8px;
   width: 100%;
@@ -531,42 +531,94 @@ a.btn-goback:hover {
             <div class="frame">
             <div class="nav_inicio">
                 <ul class"links">
-                    <li class="li_inicio signin-active"><a class="btn">Iniciar sesion</a></li>
-                    <li class="li_inicio signup-inactive"><a class="btn">registrarse</a></li>
+                    <li class="li_inicio signin-active"><a class="btn1">Iniciar sesion</a></li>
+                    <li class="li_inicio signup-inactive"><a class="btn1">registrarse</a></li>
                 </ul>
             </div>
-            <div ng-app ng-init="checked = false">
-                                <form class="form-signin" action="{{route('empleado.home')}}" method="post" id="formIniciarSesion" name="formIniciarSesion">
+            <div>
+                                <form class="row g-1 needs-validation form-signin" novalidate action="{{route('empleado.home')}}" method="post" id="formIniciarSesion" name="formIniciarSesion">
                                         @csrf
-                                        <input class="form-styling" type="text" name="username" placeholder="Cuit o DNI"/>
-                                        <input class="form-styling" type="password" name="password" placeholder="Contraseña"/>
-                                        <input type="checkbox" id="checkbox"/>
-                                        <label for="checkbox" ><span class="ui"></span>recordar inicio de sesion</label>
-                                        {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}" /> --}}
-                                        <div class="btn-animate">
+                                        <div class="col-md-12 p-2">
+                                          <input type="email" class="form-control" name="email_inicio" id="email_inicio" value="" placeholder="Email"  required>
+                                          <!-- <div class="valid-feedback">
+                                            Looks good!
+                                          </div> -->
+                                          <div class="invalid-feedback">
+                                             <b>Por favor ingrese un email valido</b>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-12 p-2">
+                                          <input type="password" name="password_inicio" placeholder="Contraseña" class="form-control" id="password_inicio" value="" required>
+                                          <div class="invalid-feedback">
+                                            <b>Por favor ingrese una contraseña</b>
+                                          </div>
+                                        </div>
+        
+                                        <!-- <input class="form-styling" type="password" name="password" placeholder="Contraseña" require/> -->
+                                        <div class="col-md-12 p-2">
+                                          <input type="checkbox" id="checkbox"/>
+                                          <label for="checkbox" ><span class="ui"></span>recordar inicio de sesion</label>
+                                        </div>
+
+                                        <div class="col-md-12 col-sm-12 text-center">
+                                          <button class="btn btn-primary btn-lg" type="submit">Iniciar Sesion</button>
+                                        </div> 
+
+                                        <hr>
+                                        <div class="text-center">
+                                          <a href="#">Olvido la contraseña?</a>
+                                        </div>
+
+                                        <!-- <div class="btn-animate">
                                           <a onclick="document.getElementById('formIniciarSesion').submit()" class="btn-signin">Iniciar sesion</a>
                                           
-                                        </div>
+                                        </div> -->
                                   </form>
                                     
-                                    <form accept-charset="utf-8" class="form-signup" action="{{route('empleado.registrarse')}}" method="post" id="formRegistrarse" name="formRegistrarse">
-                                      {{-- {{ csrf_field() }} --}}
+                                    <form accept-charset="utf-8" class="row needs-validation form-signup" novalidate action="{{route('empleado.registrarse')}}" method="post" id="formRegistrarse" name="formRegistrarse">
                                           @csrf
-                                        <input class="form-styling" type="text" name="fullname" placeholder="Nombre y Apellido"/>
-                                        <input class="form-styling" type="text" name="cuit" placeholder="Cuil/Cuit"/>
+                                        <div class="col-md-12 p-2">
+                                          <input type="text" class="form-control" name="nombre" id="nombre" value="" placeholder="Nombre"  required>
+                                          <!-- <div class="invalid-feedback">
+                                            <b>Por favor ingrese una contraseña</b>
+                                          </div> -->
+                                        </div>
+
+                                        <div class="col-md-12 p-2 col-sm-12">
+                                          <input type="text" class="form-control" name="apellido" id="apellido" value="" placeholder="Apellido"  required>
+                                        </div>
+
+                                        <div class="col-md-12 p-2 col-sm-12">
+                                          <input type="email" class="form-control" name="email" id="email" value="" placeholder="Email"  required>
+                                        </div>
+                                        <div class="col-md-12 p-2 col-sm-12">
+                                          <input type="text" class="form-control"  name="cuit" id="cuit" value="" placeholder="Cuit"  required>
+                                        </div>
+                                        <div class="col-md-12 p-2 col-sm-12">
+                                          <input type="text" class="form-control"  name="dni" id="dni" value="" placeholder="Numero de documento"  required>
+                                        </div>
+                                        <div class="col-md-12 p-2 col-sm-12">
+                                          <input type="password" class="form-control"  name="password" id="password" value="" placeholder="Contraseña"  required>
+                                        </div>
+                                        <div class="col-md-12 p-2 col-sm-12">
+                                          <input type="password" class="form-control"  name="confirmpassword" id="confirmpassword" value="" placeholder="Confirmar Contraseña"  required>
+                                        </div>
+
+                                        <!-- <input class="form-styling" type="text" name="cuit" placeholder="Cuil/Cuit"/>
                                         <input class="form-styling" type="text" name="numero_documento" placeholder="Numero Documento"/>
                                         <input class="form-styling" type="password" name="password" placeholder="Contraseña"/>
-                                        <input class="form-styling" type="password" name="confirmpassword" placeholder="Confirmar Contraseña"/>
-                                        {{-- <button type="submit">Enviar formulario</button> --}}
-                                        <div class="">
-                                            <a onclick="document.getElementById('formRegistrarse').submit()" class="btn-signup">Registrarse</a>
+                                        <input class="form-styling" type="password" name="confirmpassword" placeholder="Confirmar Contraseña"/> -->
+                                        <!-- <button class="btn btn-primary" type="submit">Enviar formulario</button> -->
+                                        <div class="col-md-12 p-3 text-center">
+                                          <button class="btn btn-primary btn-lg" type="submit">Registrarse</button>
                                         </div>
+                                        <!-- <div class="">
+                                            <a onclick="document.getElementById('formRegistrarse').submit()" class="btn-signup">Registrarse</a>
+                                        </div> -->
                                 </form>
                 </div>
-                <br><br> <br>
-                <div class="forgot">
-                        <a href="#">Olvido la contraseña?</a>
-                </div>
+                <!-- <br><br> <br> -->
+
             </div>
             
             {{-- <a id="refresh" value="Refresh" onClick="history.go()">
@@ -589,7 +641,7 @@ a.btn-goback:hover {
 
 <script>
     $(function() {
-        $(".btn").click(function() {
+        $(".btn1").click(function() {
             $(".form-signin").toggleClass("form-signin-left");
         $(".form-signup").toggleClass("form-signup-left");
         $(".frame").toggleClass("frame-long");
@@ -624,13 +676,24 @@ a.btn-goback:hover {
 </script>
 
 <script>
-  // @if ($status_info)
-  //         toastr.info(" {{ $message }}", 'Informar', {
-  //             // "progressBar": true,
-  //             "closeButton": true,
-  //             "positionClass": "toast-bottom-right",
-  //             "timeOut": "10000",
-  //         });   
-  // @endif 
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
 </script>
 @endsection
