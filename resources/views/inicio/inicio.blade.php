@@ -536,103 +536,82 @@ a.btn-goback:hover {
                 </ul>
             </div>
             <div>
-                                <form class="row g-1 needs-validation form-signin" novalidate action="{{route('empleado.home')}}" method="post" id="formIniciarSesion" name="formIniciarSesion">
-                                        @csrf
-                                        <div class="col-md-12 p-2">
-                                          <input type="email" class="form-control" name="email_inicio" id="email_inicio" value="" placeholder="Email"  required>
-                                          <!-- <div class="valid-feedback">
-                                            Looks good!
-                                          </div> -->
-                                          <div class="invalid-feedback">
-                                             <b>Por favor ingrese un email valido</b>
-                                          </div>
-                                        </div>
-                                        <div class="col-md-12 p-2">
-                                          <input type="password" name="password_inicio" placeholder="Contraseña" class="form-control" id="password_inicio" value="" required>
-                                          <div class="invalid-feedback">
-                                            <b>Por favor ingrese una contraseña</b>
-                                          </div>
-                                        </div>
-        
-                                        <!-- <input class="form-styling" type="password" name="password" placeholder="Contraseña" require/> -->
-                                        <div class="col-md-12 p-2">
-                                          <input type="checkbox" id="checkbox"/>
-                                          <label for="checkbox" ><span class="ui"></span>recordar inicio de sesion</label>
-                                        </div>
+                  <form class="row g-1 needs-validation form-signin" novalidate action="{{route('empleado.home')}}" method="post" id="formIniciarSesion" name="formIniciarSesion">
+                          @csrf
+                          <div class="col-md-12 p-2">
+                            <input type="email" class="form-control" name="email_inicio" id="email_inicio" value="" placeholder="Email"  required>
+                            <!-- <div class="valid-feedback">
+                              Looks good!
+                            </div> -->
+                            <div class="invalid-feedback">
+                                <b>Por favor ingrese un email valido</b>
+                            </div>
+                          </div>
+                          <div class="col-md-12 p-2">
+                            <input type="password" name="password_inicio" placeholder="Contraseña" class="form-control" id="password_inicio" value="" required>
+                            <div class="invalid-feedback">
+                              <b>Por favor ingrese una contraseña</b>
+                            </div>
+                          </div>
+                          <div class="col-md-12 p-2">
+                            <input type="checkbox" id="checkbox"/>
+                            <label for="checkbox" ><span class="ui"></span>recordar inicio de sesion</label>
+                          </div>
 
-                                        <div class="col-md-12 col-sm-12 text-center">
-                                          <button class="btn btn-primary btn-lg" type="submit">Iniciar Sesion</button>
-                                        </div> 
+                          <div class="col-md-12 col-sm-12 text-center">
+                            <button class="btn btn-primary btn-lg" type="submit"><b>Iniciar Sesion</b></button>
+                          </div> 
 
-                                        <hr>
-                                        <div class="text-center">
-                                          <a href="#">Olvido la contraseña?</a>
-                                        </div>
+                          <hr>
+                          <div class="text-center">
+                            <a href="#">Olvido la contraseña?</a>
+                          </div>
 
-                                        <!-- <div class="btn-animate">
-                                          <a onclick="document.getElementById('formIniciarSesion').submit()" class="btn-signin">Iniciar sesion</a>
-                                          
-                                        </div> -->
-                                  </form>
-                                    
-                                    <form accept-charset="utf-8" class="row needs-validation form-signup" novalidate action="{{route('empleado.registrarse')}}" method="post" id="formRegistrarse" name="formRegistrarse">
-                                          @csrf
-                                        <div class="col-md-12 p-2">
-                                          <input type="text" class="form-control" name="nombre" id="nombre" value="" placeholder="Nombre"  required>
-                                          <!-- <div class="invalid-feedback">
-                                            <b>Por favor ingrese una contraseña</b>
-                                          </div> -->
-                                        </div>
+                          <!-- <div class="btn-animate">
+                            <a onclick="document.getElementById('formIniciarSesion').submit()" class="btn-signin">Iniciar sesion</a>
+                            
+                          </div> -->
+                    </form>
+                      
+                      <form accept-charset="utf-8" class="row needs-validation form-signup" novalidate action="{{route('empleado.registrarse')}}" method="post" id="formRegistrarse" name="formRegistrarse">
+                            @csrf
+                          <div class="col-md-12 p-2">
+                            <input type="text" class="form-control" name="nombre" id="nombre" value="" placeholder="Nombre"  required>
+                            <!-- <div class="invalid-feedback">
+                              <b>Por favor ingrese una contraseña</b>
+                            </div> -->
+                          </div>
 
-                                        <div class="col-md-12 p-2 col-sm-12">
-                                          <input type="text" class="form-control" name="apellido" id="apellido" value="" placeholder="Apellido"  required>
-                                        </div>
+                          <div class="col-md-12 p-2 col-sm-12">
+                            <input type="text" class="form-control" name="apellido" id="apellido" value="" placeholder="Apellido"  required>
+                          </div>
 
-                                        <div class="col-md-12 p-2 col-sm-12">
-                                          <input type="email" class="form-control" name="email" id="email" value="" placeholder="Email"  required>
-                                        </div>
-                                        <div class="col-md-12 p-2 col-sm-12">
-                                          <input type="text" class="form-control"  name="cuit" id="cuit" value="" placeholder="Cuit"  required>
-                                        </div>
-                                        <div class="col-md-12 p-2 col-sm-12">
-                                          <input type="text" class="form-control"  name="dni" id="dni" value="" placeholder="Numero de documento"  required>
-                                        </div>
-                                        <div class="col-md-12 p-2 col-sm-12">
-                                          <input type="password" class="form-control"  name="password" id="password" value="" placeholder="Contraseña"  required>
-                                        </div>
-                                        <div class="col-md-12 p-2 col-sm-12">
-                                          <input type="password" class="form-control"  name="confirmpassword" id="confirmpassword" value="" placeholder="Confirmar Contraseña"  required>
-                                        </div>
-
-                                        <!-- <input class="form-styling" type="text" name="cuit" placeholder="Cuil/Cuit"/>
-                                        <input class="form-styling" type="text" name="numero_documento" placeholder="Numero Documento"/>
-                                        <input class="form-styling" type="password" name="password" placeholder="Contraseña"/>
-                                        <input class="form-styling" type="password" name="confirmpassword" placeholder="Confirmar Contraseña"/> -->
-                                        <!-- <button class="btn btn-primary" type="submit">Enviar formulario</button> -->
-                                        <div class="col-md-12 p-3 text-center">
-                                          <button class="btn btn-primary btn-lg" type="submit">Registrarse</button>
-                                        </div>
-                                        <!-- <div class="">
-                                            <a onclick="document.getElementById('formRegistrarse').submit()" class="btn-signup">Registrarse</a>
-                                        </div> -->
-                                </form>
+                          <div class="col-md-12 p-2 col-sm-12">
+                            <input type="email" class="form-control" name="email" id="email" value="" placeholder="Email"  required>
+                          </div>
+                          <div class="col-md-12 p-2 col-sm-12">
+                            <input type="text" class="form-control"  name="cuit" id="cuit" value="" placeholder="Cuit"  required>
+                          </div>
+                          <div class="col-md-12 p-2 col-sm-12">
+                            <input type="text" class="form-control"  name="dni" id="dni" value="" placeholder="Numero de documento"  required>
+                          </div>
+                          <div class="col-md-12 p-2 col-sm-12">
+                            <input type="password" class="form-control"  name="password" id="password" value="" placeholder="Contraseña"  required>
+                          </div>
+                          <div class="col-md-12 p-2 col-sm-12">
+                            <input type="password" class="form-control"  name="confirmpassword" id="confirmpassword" value="" placeholder="Confirmar Contraseña"  required>
+                          </div>
+                          <div class="col-md-12 p-3 text-center">
+                            <button class="btn btn-primary btn-lg" type="submit"><b>Registrarse</b></button>
+                          </div>
+                          <!-- <div class="">
+                              <a onclick="document.getElementById('formRegistrarse').submit()" class="btn-signup">Registrarse</a>
+                          </div> -->
+                  </form>
                 </div>
-                <!-- <br><br> <br> -->
 
             </div>
-            
-            {{-- <a id="refresh" value="Refresh" onClick="history.go()">
-            <svg class="refreshicon"   version="1.1" id="Capa_1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                width="25px" height="25px" viewBox="0 0 322.447 322.447" style="enable-background:new 0 0 322.447 322.447;"
-                xml:space="preserve">
-                <path  d="M321.832,230.327c-2.133-6.565-9.184-10.154-15.75-8.025l-16.254,5.281C299.785,206.991,305,184.347,305,161.224
-                        c0-84.089-68.41-152.5-152.5-152.5C68.411,8.724,0,77.135,0,161.224s68.411,152.5,152.5,152.5c6.903,0,12.5-5.597,12.5-12.5
-                        c0-6.902-5.597-12.5-12.5-12.5c-70.304,0-127.5-57.195-127.5-127.5c0-70.304,57.196-127.5,127.5-127.5
-                        c70.305,0,127.5,57.196,127.5,127.5c0,19.372-4.371,38.337-12.723,55.568l-5.553-17.096c-2.133-6.564-9.186-10.156-15.75-8.025
-                        c-6.566,2.134-10.16,9.186-8.027,15.751l14.74,45.368c1.715,5.283,6.615,8.642,11.885,8.642c1.279,0,2.582-0.198,3.865-0.614
-                        l45.369-14.738C320.371,243.946,323.965,236.895,321.832,230.327z"/>
-            </svg>
-            </a> --}}
+
         </div>
     </article>
 @endsection

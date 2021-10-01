@@ -24,12 +24,13 @@ class EmpleadoController extends Controller
     {
 
         $inicio = "";
-        $usuario = $request->username;
-        $contrasena = $request->password;
+        $usuario = $request->email_inicio;
+        $contrasena = $request->password_inicio;
         $no_hay_datos = false;
         $status_info = true;
 
-        $login =  DB::select("SELECT * FROM users where cuit = '" . $usuario . "' OR dni = '" . $usuario . "'" );
+        $login =  DB::select("SELECT * FROM users where email = '" . $usuario . "'" );
+        // dd($login);
 
         if(count($login) == 0)
 		{
@@ -55,8 +56,9 @@ class EmpleadoController extends Controller
                 // dd($login[0]->cuit);
                 session(['usuario'=>$login[0]->cuit, 'nombre'=>$login[0]->nombreyApellido]);
                 $nombre = $login[0]->nombreyApellido;
+                $cuit = $login[0]->cuit;
                 // $datos =  DB::select("SELECT DISTINCT apellido, tipo, nombre, cuil, mes, mes_nom, anio FROM recibos_originales where cuil = " . $usuario . " OR numero_documento = '" . $usuario . "'" . " ORDER BY anio, mes ASC");
-                $datos =  DB::select("SELECT DISTINCT apellido, tipo, nombre, cuil, mes, mes_nom, anio FROM recibos_originales where cuil = " . $usuario . " OR numero_documento = '" . $usuario . "'" . " ORDER BY anio, mes ASC");
+                $datos =  DB::select("SELECT DISTINCT apellido, tipo, nombre, cuil, mes, mes_nom, anio FROM recibos_originales where cuil = '" . $cuit . "'". " ORDER BY anio, mes ASC");
                 
                 if(count( $datos) == 0)
                 {
@@ -153,13 +155,16 @@ class EmpleadoController extends Controller
 
     public function registrarse(Request $request)
     {
+        
+        $nombre = $request->nombre;
+        $apellido = $request->apellido;
+        $email = $request->email;
         $cuit = $request->cuit;
-        $fullname = $request->fullname;
-        $numero_documento = $request->numero_documento;
+        $dni = $request->dni;
         $contrasena = $request->password;
         $confirmpassword = $request->confirmpassword;
 
-        if($cuit == null || $fullname == null || $numero_documento == null || $contrasena == null || $confirmpassword  == null)
+        if($nombre == null || $apellido == null || $email == null || $cuit == null || $dni == null || $contrasena == null || $confirmpassword  == null)
         {
 			$message = "Para Registrarse, complete todos los datos del formulario";
 			$status_error = true;
@@ -170,8 +175,9 @@ class EmpleadoController extends Controller
             return redirect('inicio')->with(['status_info' => $status_error, 'message' => $message,]);
         }
 
-        $existe =  DB::select("SELECT * FROM users where cuit = '" . $cuit . "' OR dni = '" . $numero_documento . "'" );
-
+        //validar con la tabla que exista el empleado en la tabla de usuarios con mail del municipio
+        $existe =  DB::select("SELECT * FROM users where cuit = '" . $cuit . "' OR dni = '" . $dni . "' OR email = '" . $email . "';");
+        
         if(count($existe) >= 1)
 		{
 			$message = "Usted ya posee una cuenta";
