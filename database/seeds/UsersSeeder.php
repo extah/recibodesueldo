@@ -13,6 +13,14 @@ class UsersSeeder extends Seeder
     public function run()
     {
         $p = new Users();
+        $p->nombreyApellido = 'Emmanuel Baleztena';
+        $p->email = 'emma@gmail.com';
+        $p->cuit = 20367384515;
+        $p->dni = 20367384515;
+        $p->contrasena = '$2y$10$UKXqQl3sS8O08fIj8Bx9A.fOYFIFizW7X2s2ndRjDgLF1ITtRl0FK';
+        $p->save();
+
+        $p = new Users();
         $p->nombreyApellido = 'JUAN CARLOS LITWIN';
         $p->email = 'litwin@gmail.com';
         $p->cuit = 20106012742;

@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Response;
 use PDFVillca;
+use App\Recibos_originales;
 use Barryvdh\DomPDF\Facade as PDF;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 use DB;
 // use Codedge\Fpdf\Fpdf;
@@ -220,18 +222,20 @@ class EmpleadoController extends Controller
 
         $result = $this->isUsuario($usuario);
         $no_hay_datos = false;
-
+        
         if($result == "OK")
         {
             $fecha_desde = $request->fecha_desde;
             $fecha_hasta = $request->fecha_hasta;
 
-            $mes_desde = substr($fecha_desde, 0, -5);
-            $anio_desde = substr($fecha_desde, 3);
+            // $mes_desde = substr($fecha_desde, 0, -5);
+            // $anio_desde = substr($fecha_desde, 3);
+            $anio_desde = $fecha_desde;
+            $anio_hasta = $fecha_hasta;
+            // $mes_hasta = substr($fecha_hasta, 0, -5);
+            // $anio_hasta = substr($fecha_hasta, 3);
 
-            $mes_hasta = substr($fecha_hasta, 0, -5);
-            $anio_hasta = substr($fecha_hasta, 3);
-
+            // return $mes_desde;
             $inicio = "";
             $esEmp = true;
             $status_ok = false;
@@ -241,7 +245,7 @@ class EmpleadoController extends Controller
             // $cuil = $persona[0]->cuit;
             // $nombre = $persona[0]->nombreyApellido;
 
-            $datos =  DB::select("SELECT DISTINCT apellido, tipo, nombre, cuil, mes, mes_nom, anio FROM recibos_originales where cuil = " . $usuario . " AND mes BETWEEN $mes_desde AND $mes_hasta ORDER BY anio, mes ASC");
+            $datos =  DB::select("SELECT DISTINCT apellido, tipo, nombre, cuil, mes, mes_nom, anio FROM recibos_originales where cuil = " . $usuario . " AND anio BETWEEN $anio_desde AND $anio_hasta ORDER BY anio, mes ASC");
 
             if(count( $datos) == 0)
             {
@@ -931,6 +935,7 @@ class EmpleadoController extends Controller
                 $pdf->SetXY(64, 231);
                 $pdf->Write(8, 'Emitido con Fecha : ' . $ldate);
                 $pdf->Output($cuil . '_recibo_' . $mes_nom . '_'. $anio . '_' . $cuil . '.pdf', 'I');
+
                 // $pdf->Output('recibo_generated.pdf', 'D');
             }
         }
@@ -944,6 +949,164 @@ class EmpleadoController extends Controller
         }    
 
     }
+
+    public function insertar_datos_recibo(Request $request){
+        //obtener el id de la persona logueada
+        // !session('cuix')
+        // return $request;
+        
+        
+	    $name = $request->archivo->getClientOriginalName();
+        $extension = pathinfo($name, PATHINFO_EXTENSION);
+        
+        if ($extension == 'xlsx') {
+            $tmpfName = $_FILES['archivo']['tmp_name'];
+            //Crear excel para leerlo
+            $leerExcel = IOFactory::createReaderForFile($tmpfName);
+            //Cargar el excel
+            $excelObj = $leerExcel->load($tmpfName);
+
+            //Cargar en que hoja trabajar
+            $hoja = $excelObj->getSheet(0);
+            $filas = $hoja->getHighestRow();
+
+            for ($i = 2; $i <= $filas; $i++) {
+
+                $id_fila = $i;
+                
+                $recibos = new Recibos_originales();
+
+                $recibos->apellido = $hoja->getCell('A' . $i)->getValue();
+                $recibos->nombre = $hoja->getCell('B' . $i)->getValue();
+                $recibos->legajo = $hoja->getCell('C' . $i)->getValue();
+
+                //pasar de datetime a date
+                $datetime = $hoja->getCell('D' . $i)->getValue();
+                $date =  date("Y-m-d", strtotime($datetime));
+                $recibos->fecha_ingreso = $date;
+                
+
+                $fecha_reingreso = $hoja->getCell('E' . $i)->getValue();
+                
+                if ($fecha_reingreso != "NULL") {
+                    $date =  date("Y-m-d", strtotime($fecha_reingreso));
+                    $recibos->fecha_reingreso =  $date;
+                }
+
+                $recibos->tipo_documento = $hoja->getCell('F' . $i)->getValue(); 
+                $recibos->numero_documento = $hoja->getCell('G' . $i)->getValue();
+                $recibos->dependencia = $hoja->getCell('H' . $i)->getValue();
+                $recibos->antiguedad = $hoja->getCell('I' . $i)->getValue();
+                $recibos->categoria = $hoja->getCell('J' . $i)->getValue();
+                $recibos->carrera = $hoja->getCell('K' . $i)->getValue();
+                $recibos->clase = $hoja->getCell('L' . $i)->getValue();
+                $recibos->regimen_horario = $hoja->getCell('M' . $i)->getValue();
+                $recibos->cuil = $hoja->getCell('N' . $i)->getValue();
+                $recibos->planta = $hoja->getCell('O' . $i)->getValue();
+                $recibos->dep = $hoja->getCell('P' . $i)->getValue();
+                $recibos->mes = $hoja->getCell('Q' . $i)->getValue();
+                $recibos->mes_nom = $hoja->getCell('R' . $i)->getValue();
+                $recibos->anio = $hoja->getCell('S' . $i)->getValue();
+                $recibos->tipo = $hoja->getCell('T' . $i)->getValue();
+                $recibos->total_haberes = $hoja->getCell('U' . $i)->getValue();
+                $recibos->total_hasindto = $hoja->getCell('V' . $i)->getValue();
+                $recibos->total_dto = $hoja->getCell('W' . $i)->getValue();
+                $recibos->concepto = $hoja->getCell('X' . $i)->getValue();
+                $recibos->cantidad = $hoja->getCell('Y' . $i)->getValue();
+                $recibos->descripcion = $hoja->getCell('Z' . $i)->getValue();
+                $recibos->importe = $hoja->getCell('AA' . $i)->getValue();
+                
+                $recibos->save();
+                // return "OK";
+
+            }
+            dd("termino");
+
+            //SI ESTA TODO OK, INSERTAR LAS PIEZAS VALIDAS O INFORMAR EL LISTADO
+
+            //dd();
+            //Excel::import(new PiezaImport,$request->file);
+
+        } elseif ($extension == 'csv') {
+            //dd($name);
+
+
+            $archivofp = fopen($_FILES['file']['tmp_name'], "r");
+            $linea = 0;
+            $i = 1;
+            while (($datos = fgetcsv($archivofp, ",")) == true) {
+                $num = count($datos);
+
+                //Recorremos las columnas de esa linea
+                if ($linea != 0) {
+
+                    // echo $datos[$columna] . "\n";
+
+                    $campaniaId = $idCampania;
+                    $internoId = $idInterno; //BUSCAR DATO DE LA PERSONA LOGUEADA
+                    $id_lote = $i;
+                    $nombreP = $datos[0];
+                    $destinatario_cuix = $datos[1];
+                    $destinatario_nombre = $datos[2];
+                    $destinatario_apellido = $datos[3];
+                    $archivo = $datos[4];
+                    $fechaDisp = $datos[5]; //validar que sea mayor o igual a la actual
+                    $notificado_de_oficio = false;
+                    $carga_batch = true;
+
+                    //Datos del archivo Excel
+                    $datosExcel = [
+                        $campaniaId, $internoId, $id_lote, $nombreP, $destinatario_cuix, $destinatario_nombre,
+                        $destinatario_apellido, $archivo, $fechaDisp, $notificado_de_oficio, $carga_batch
+                    ];
+                    
+                    //LLAMAR A LA FUNCION insertarPieza
+                    $result = $this->insertarPiezaExcel($datosExcel);
+                    
+                    if (!$result) {
+
+                        //dd("ERROR");hacer pagina de error
+                    }
+                }
+
+                $linea++;
+                $i++;
+            }
+            //Cerramos el archivo
+            fclose($archivofp);
+
+            //  echo "Archivo recorrido";
+            return "Termino";
+        }
+    }
+    public function agregarrecibos(Request $request)
+    {
+        $usuario = $request->session()->get('usuario');
+        $nombre = $request->session()->get('nombre');
+        $result = $this->isUsuario($usuario);
+
+        if($result == "OK")
+        {
+
+            $no_hay_datos = false;
+            $inicio = "";
+            $esEmp = true;
+            $status_ok = false;
+
+            return view('empleado.agregarrecibos', compact('inicio', 'esEmp', 'nombre', 'usuario', 'status_ok', 'no_hay_datos'));
+        }
+        else
+        {
+			$message = "Inicie sesion";
+			$status_error = false;
+            $status_info = true;
+            $esEmp = false;
+
+            // return view('inicio.inicio', compact('status_error', 'esEmp', 'message', 'status_info'));
+            return redirect('inicio')->with(['status_info' => $status_info, 'message' => $message,]);
+        }
+    }
+
     function isUsuario($usuario)
     {
         # code...

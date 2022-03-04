@@ -2,8 +2,6 @@
 
 @section('css')
 
-
-            <!-- <link rel="stylesheet" href="{{ asset('css/login.css') }}"> -->
             <link href="{{ asset('/assets/bootstrap-datepicker-1.7.1/css/bootstrap-datepicker.min.css') }}" rel="stylesheet"/>
 
 @endsection
@@ -18,12 +16,12 @@
               <div class="container"> 
                 <div class="row">
                   <div class="col-sm-3 col-md-3 my-0 fs-3">
-                    <label class="formItem" for="fecha_turno"> <b>Fecha Desde</b></label>
-                    <input class="form-control" data-date-format="yyyy/mm" id="fecha_desde" name="fecha_desde" required>
+                    <label class="formItem" for="fecha_turno"> <b>Año desde</b></label>
+                    <input class="form-control" data-date-format="yyyy" id="fecha_desde" name="fecha_desde" required>
                   </div>
                   <div class="col-sm-3 col-md-3 my-0 fs-3">
-                    <label class="formItem" for="fecha_hasta"> <b>Fecha Hasta</b></label>
-                    <input class="form-control" data-date-format="yyyy/mm" id="fecha_hasta" name="fecha_hasta" required>
+                    <label class="formItem" for="fecha_hasta"> <b>Año hasta</b></label>
+                    <input class="form-control" data-date-format="yyyy" id="fecha_hasta" name="fecha_hasta" required>
                   </div>
                     <div class="d-grid col-sm-2 col-md-2 my-3 p-3">
                       <button type="submit" class="btn btn-lg btn-primary" id="buscar" name="buscar">Buscar</button>
@@ -38,29 +36,30 @@
               <div class="col-sm-3  p-1">
                   <div class="card">
                     
-                    <div class="card-header"  style="background-color: #3f4348; color:beige">{{ $dato->nombre }} {{ $dato->apellido }}</div>
+                    <div class="card-header"  style="background-color: #3f4348; color:beige">{{ $dato->mes_nom }} {{ $dato->anio }}</div>
                     <div class="card-body">
-                      <h5 class="card-title">{{ $dato->mes_nom }} {{ $dato->anio }}</h5>
-                      <p class="card-text">
+                      <h4 class="card-text">
 
                         @if ($dato->tipo == "N")
-                            Sueldo Mensual
+                            Sueldo mensual
                             
                         @elseif ($dato->tipo == "A")
-                            Ayuda Escolar
+                            Ayuda escolar
                             
                         @elseif ($dato->tipo == "J")
-                            Liq. Adicional
+                            Liq. adicional
                             
                         @elseif ($dato->tipo == "S")
                             S.A.C
                            
                         @elseif ($dato->tipo == "X")
-                            Horas Extras
+                            Horas extras
                         @endif
                         
-                      </p>
-                      <a href="{{url('empleado/mostrar',['tipo' => $dato->tipo,'mes' => $dato->mes,'anio' => $dato->anio])}}" class="btn btn-info"><i class="fas fa-eye"></i> VER</a>
+                      </h4>
+                      <h6> <b>{{ $dato->nombre }} {{ $dato->apellido }}</b></h6>
+                      <br>
+                      <a target="_blank" rel="noopener noreferrer" href="{{url('empleado/mostrar',['tipo' => $dato->tipo,'mes' => $dato->mes,'anio' => $dato->anio])}}" class="btn btn-info"><i class="fas fa-eye"></i> VER</a>
                       <a href="{{url('empleado/descargar',['tipo' => $dato->tipo,'mes' => $dato->mes,'anio' => $dato->anio])}}" class="btn btn-success"><i class="fas fa-download"></i> DESCARGAR</a>
                       
                     </div>
@@ -96,9 +95,10 @@
 <script>
 	$('#fecha_hasta').datepicker({
 		uiLibrary: 'bootstrap4',
-    format: "mm/yyyy",
+    format: "yyyy",
     startView: "year", 
-    minViewMode: "months",
+    minViewMode: "years",
+    // minViewMode: "months",
 		locale: 'es',
 		language: 'es',
 		autoclose: true,
@@ -117,9 +117,10 @@
 <script>
 	$('#fecha_desde').datepicker({
 		uiLibrary: 'bootstrap4',
-    format: "mm/yyyy",
+    format: "yyyy",
     startView: "year", 
-    minViewMode: "months",
+    minViewMode: "years",
+    // minViewMode: "months",
 		locale: 'es',
 		language: 'es',
 		autoclose: true,
