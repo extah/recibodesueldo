@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('cuit')->nullable();
             $table->bigInteger('dni')->nullable();
             $table->string('contrasena', 255)->nullable();
+            $table->boolean('admin');
             $table->timestamps();
         });
 

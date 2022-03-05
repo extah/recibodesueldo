@@ -53,12 +53,14 @@
                 @if ($esEmp)
                   <div class="dropdown"> 
 
-
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ (($usuario)) ?? '' }}, {{ (($nombre)) ?? '' }}
+                        {{ (($login[0]->email)) ?? '' }}, {{ (($login[0]->nombreyApellido)) ?? '' }}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
                       <li><a class="dropdown-item" href="{{route('empleado.home')}}">Mis Recibos</a></li>
+                      @if ($login[0]->admin)
+                        <li><a class="dropdown-item" href="{{route('empleado.agregarrecibos')}}">Subir recibos de sueldo xlsx</a></li>
+                      @endif
                       <li><hr class="dropdown-divider"></li>
                       <li><a class="dropdown-item" href="{{route('empleado.cerrarsesion')}}">Cerrar sesion</a></li>
                     </ul>

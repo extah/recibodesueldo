@@ -161,7 +161,7 @@
 
 <script>
     @if ($status_ok)
-            toastr.success("{{ $nombre }}", ' {{  $message }} ', {
+            toastr.success("{{ $login[0]->nombreyApellido }}", ' {{  $message }} ', {
                 // "progressBar": true,
                 "closeButton": true,
                 "positionClass": "toast-bottom-right",

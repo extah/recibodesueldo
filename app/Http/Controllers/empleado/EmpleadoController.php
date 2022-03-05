@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Response;
 use PDFVillca;
 use App\Recibos_originales;
+use App\Users;
 use Barryvdh\DomPDF\Facade as PDF;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
@@ -31,12 +32,12 @@ class EmpleadoController extends Controller
         $no_hay_datos = false;
         $status_info = true;
 
-        $login =  DB::select("SELECT * FROM users where email = '" . $usuario . "'" );
-        // dd($login);
+        // $login[0] =  DB::select("SELECT * FROM users where email = '" . $usuario . "'" );
+        $login = Users::get_registro($usuario);
+        
 
-        if(count($login) == 0)
+        if($login->isEmpty())
 		{
-            
 			$message = "usuario/contraseña ";
 			$status_error = true;
             $status_ok = false;
@@ -55,7 +56,7 @@ class EmpleadoController extends Controller
                 $esEmp = true;
 
                 // $request->session()->flush();
-                // dd($login[0]->cuit);
+                // dd($login[0][0]->cuit);
                 session(['usuario'=>$login[0]->cuit, 'nombre'=>$login[0]->nombreyApellido]);
                 $nombre = $login[0]->nombreyApellido;
                 $cuit = $login[0]->cuit;
@@ -66,7 +67,8 @@ class EmpleadoController extends Controller
                 {
                     $no_hay_datos = true;
                 }
-                return view('empleado.empleado', compact('inicio', 'esEmp', 'nombre', 'usuario', 'datos', 'status_ok', 'message', 'no_hay_datos'));
+
+                return view('empleado.empleado', compact('inicio', 'esEmp', 'login', 'datos', 'status_ok', 'message', 'no_hay_datos'));
                 
             }
             else
@@ -85,7 +87,7 @@ class EmpleadoController extends Controller
 
     public function indexget(Request $request)
     {
-        
+        //guardo el cuit
         $usuario = $request->session()->get('usuario');
         $nombre = $request->session()->get('nombre');
         $result = $this->isUsuario($usuario);
@@ -100,11 +102,13 @@ class EmpleadoController extends Controller
             $message = "Bienvenido/a ";
             $datos =  DB::select("SELECT DISTINCT apellido, tipo, nombre, cuil, mes, mes_nom, anio FROM recibos_originales where cuil = " . $usuario . " OR numero_documento = " . $usuario . " ORDER BY anio, mes ASC");
             
+            $login = Users::get_registro_cuit($usuario);
+
             if(count($datos) == 0)
             {
                 $no_hay_datos = true;
             }
-            return view('empleado.empleado', compact('inicio', 'esEmp', 'nombre', 'usuario', 'datos', 'status_ok', 'message', 'no_hay_datos'));
+            return view('empleado.empleado', compact('inicio', 'esEmp', 'login', 'datos', 'status_ok', 'message', 'no_hay_datos'));
         }
         else
         {
@@ -246,12 +250,12 @@ class EmpleadoController extends Controller
             // $nombre = $persona[0]->nombreyApellido;
 
             $datos =  DB::select("SELECT DISTINCT apellido, tipo, nombre, cuil, mes, mes_nom, anio FROM recibos_originales where cuil = " . $usuario . " AND anio BETWEEN $anio_desde AND $anio_hasta ORDER BY anio, mes ASC");
-
+            $login = Users::get_registro_cuit($usuario);
             if(count( $datos) == 0)
             {
                 $no_hay_datos = true;
             }
-            return view('empleado.empleado', compact('esEmp', 'nombre', 'usuario', 'datos', 'status_ok', 'message', 'no_hay_datos'));
+            return view('empleado.empleado', compact('esEmp', 'login','datos', 'status_ok', 'message', 'no_hay_datos'));
         }
         else
         {
@@ -278,12 +282,15 @@ class EmpleadoController extends Controller
             $status_ok = false;
             $message = "Bienvenido/a ";
             $datos =  DB::select("SELECT DISTINCT apellido, tipo, nombre, cuil, mes, mes_nom, anio FROM recibos_originales where cuil = " . $usuario . " OR numero_documento = " . $usuario . " ORDER BY anio, mes ASC");
-            
+            $login = Users::get_registro_cuit($usuario);
+
             if(count($datos) == 0)
             {
                 $no_hay_datos = true;
             }
-            return view('empleado.empleado', compact('inicio', 'esEmp', 'nombre', 'usuario', 'datos', 'status_ok', 'message', 'no_hay_datos'));
+            
+
+            return view('empleado.empleado', compact('inicio', 'esEmp', 'login', 'datos', 'status_ok', 'message', 'no_hay_datos'));
         }
         else
         {
@@ -953,9 +960,7 @@ class EmpleadoController extends Controller
     public function insertar_datos_recibo(Request $request){
         //obtener el id de la persona logueada
         // !session('cuix')
-        // return $request;
-        
-        
+        $usuario = $request->session()->get('usuario');
 	    $name = $request->archivo->getClientOriginalName();
         $extension = pathinfo($name, PATHINFO_EXTENSION);
         
@@ -1020,64 +1025,62 @@ class EmpleadoController extends Controller
                 // return "OK";
 
             }
-            dd("termino");
-
-            //SI ESTA TODO OK, INSERTAR LAS PIEZAS VALIDAS O INFORMAR EL LISTADO
-
-            //dd();
-            //Excel::import(new PiezaImport,$request->file);
 
         } elseif ($extension == 'csv') {
             //dd($name);
 
 
-            $archivofp = fopen($_FILES['file']['tmp_name'], "r");
-            $linea = 0;
-            $i = 1;
-            while (($datos = fgetcsv($archivofp, ",")) == true) {
-                $num = count($datos);
+            // $archivofp = fopen($_FILES['file']['tmp_name'], "r");
+            // $linea = 0;
+            // $i = 1;
+            // while (($datos = fgetcsv($archivofp, ",")) == true) {
+            //     $num = count($datos);
 
-                //Recorremos las columnas de esa linea
-                if ($linea != 0) {
+            //     //Recorremos las columnas de esa linea
+            //     if ($linea != 0) {
 
-                    // echo $datos[$columna] . "\n";
-
-                    $campaniaId = $idCampania;
-                    $internoId = $idInterno; //BUSCAR DATO DE LA PERSONA LOGUEADA
-                    $id_lote = $i;
-                    $nombreP = $datos[0];
-                    $destinatario_cuix = $datos[1];
-                    $destinatario_nombre = $datos[2];
-                    $destinatario_apellido = $datos[3];
-                    $archivo = $datos[4];
-                    $fechaDisp = $datos[5]; //validar que sea mayor o igual a la actual
-                    $notificado_de_oficio = false;
-                    $carga_batch = true;
-
-                    //Datos del archivo Excel
-                    $datosExcel = [
-                        $campaniaId, $internoId, $id_lote, $nombreP, $destinatario_cuix, $destinatario_nombre,
-                        $destinatario_apellido, $archivo, $fechaDisp, $notificado_de_oficio, $carga_batch
-                    ];
+            //         $campaniaId = $idCampania;
+            //         $internoId = $idInterno; //BUSCAR DATO DE LA PERSONA LOGUEADA
+            //         $id_lote = $i;
+            //         $nombreP = $datos[0];
+            //         $destinatario_cuix = $datos[1];
+            //         $destinatario_nombre = $datos[2];
+            //         $destinatario_apellido = $datos[3];
+            //         $archivo = $datos[4];
+            //         $fechaDisp = $datos[5]; //validar que sea mayor o igual a la actual
+            //         $notificado_de_oficio = false;
+            //         $carga_batch = true;
                     
-                    //LLAMAR A LA FUNCION insertarPieza
-                    $result = $this->insertarPiezaExcel($datosExcel);
+            //         //LLAMAR A LA FUNCION insertarPieza
+            //         $result = $this->insertarPiezaExcel($datosExcel);
                     
-                    if (!$result) {
+            //     }
 
-                        //dd("ERROR");hacer pagina de error
-                    }
-                }
-
-                $linea++;
-                $i++;
-            }
+            //     $linea++;
+            //     $i++;
+            // }
             //Cerramos el archivo
-            fclose($archivofp);
+            // fclose($archivofp);
 
             //  echo "Archivo recorrido";
-            return "Termino";
+            
         }
+
+        $message = "EXCEL CARGADO CON EXITO";
+        $status_ok = true;
+        $esEmp = true;
+        $no_hay_datos = false;
+        
+        $datos =  DB::select("SELECT DISTINCT apellido, tipo, nombre, cuil, mes, mes_nom, anio FROM recibos_originales where cuil = '" . $usuario . "'". " ORDER BY anio, mes ASC");
+        $login = Users::get_registro_cuit($usuario);
+
+        if(count( $datos) == 0)
+        {
+            $no_hay_datos = true;
+        }
+
+        // return redirect('empleado/agregarrecibos')->with(['esEmp' => $esEmp, 'login' => $login,'datos' => $datos,'status_ok' => $status_ok,'message' => $message,'no_hay_datos' => $no_hay_datos,]);
+        return view('empleado.agregarrecibos', compact('esEmp', 'login', 'status_ok', 'message', 'no_hay_datos'));
     }
     public function agregarrecibos(Request $request)
     {
@@ -1092,8 +1095,28 @@ class EmpleadoController extends Controller
             $inicio = "";
             $esEmp = true;
             $status_ok = false;
+            $login = Users::get_registro_cuit($usuario);
+            if($login[0]->admin)
+            {
+                return view('empleado.agregarrecibos', compact('inicio', 'esEmp', 'login', 'status_ok', 'no_hay_datos'));
+            }
+            else
+            {
+                $message = "Bienvenido/a";
+                $status_ok = true;
+                $esEmp = true;
+                $no_hay_datos = false;
+                
+                $datos =  DB::select("SELECT DISTINCT apellido, tipo, nombre, cuil, mes, mes_nom, anio FROM recibos_originales where cuil = '" . $usuario . "'". " ORDER BY anio, mes ASC");
+                
+                if(count( $datos) == 0)
+                {
+                    $no_hay_datos = true;
+                }
 
-            return view('empleado.agregarrecibos', compact('inicio', 'esEmp', 'nombre', 'usuario', 'status_ok', 'no_hay_datos'));
+                return redirect('empleado')->with(['esEmp' => $esEmp, 'login' => $login,'datos' => $datos,'status_ok' => $status_ok,'message' => $message,'no_hay_datos' => $no_hay_datos,]);
+            }
+           
         }
         else
         {

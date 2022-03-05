@@ -75,15 +75,15 @@
   </script>
 
 <script>
-    @if ($status_ok)
-            toastr.success("{{ $nombre }}", ' {{  $message }} ', {
-                // "progressBar": true,
-                "closeButton": true,
-                "positionClass": "toast-bottom-right",
-                "progressBar": true,
-                "timeOut": "20000",
-            });   
-    @endif 
+  @if ($status_ok)
+          toastr.info("{{  $message }}", ' Informar ', {
+              // "progressBar": true,
+              "closeButton": true,
+              "positionClass": "toast-top-right",
+              "progressBar": true,
+              "timeOut": "20000",
+          });   
+  @endif 
 </script>
 
 @endsection
