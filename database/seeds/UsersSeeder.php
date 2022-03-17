@@ -14,7 +14,7 @@ class UsersSeeder extends Seeder
     {
         $p = new Users();
         $p->nombreyApellido = 'Emmanuel Baleztena';
-        $p->email = 'emma@gmail.com';
+        $p->email = 'extah23@gmail.com';
         $p->cuit = 20367384515;
         $p->dni = 20367384515;
         $p->contrasena = '$2y$10$UKXqQl3sS8O08fIj8Bx9A.fOYFIFizW7X2s2ndRjDgLF1ITtRl0FK';

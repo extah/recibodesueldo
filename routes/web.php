@@ -23,6 +23,10 @@ Route::get('/','Inicio\InicioController@index');
 
 Route::group(array('prefix' => 'inicio'), function(){
 		Route::get('/',	'Inicio\InicioController@index')->name('inicio.index');
+		
+		Route::get('/olvidocontraseña',	'Inicio\InicioController@olvidocontraseña')->name('inicio.olvidocontraseña');
+		Route::post('/recuperarcontraseña',	'Inicio\InicioController@recuperarcontraseña')->name('inicio.recuperarcontraseña');
+		Route::get('/recuperocontraseña/{token}',	'Inicio\InicioController@recuperocontraseña')->name('inicio.recuperocontraseña');
 });
 
 Route::group(array('prefix' => 'empleado'), function(){
@@ -32,11 +36,13 @@ Route::group(array('prefix' => 'empleado'), function(){
 	Route::get('/mostrar/{tipo}/{mes}/{anio}',	'empleado\EmpleadoController@mostrarPDF')->name('empleado.mostrarPDF');
 	Route::post('/buscar',	'empleado\EmpleadoController@buscarPorMes')->name('empleado.buscarPorMes');
 	Route::get('/buscar',	'empleado\EmpleadoController@getBuscarPorMes')->name('empleado.getBuscarPorMes');
+
+	
 	Route::post('/registrarse',	'empleado\EmpleadoController@registrarse')->name('empleado.registrarse');
 	Route::get('/cerrarsesion',	'empleado\EmpleadoController@cerrarsesion')->name('empleado.cerrarsesion');
 
-	Route::get('/agregarrecibos',	'empleado\EmpleadoController@agregarrecibos')->name('empleado.agregarrecibos');
-	Route::post('/insertar_datos_recibo',	'empleado\EmpleadoController@insertar_datos_recibo')->name('empleado.insertar_datos_recibo');
+	// Route::get('/agregarrecibos',	'empleado\EmpleadoController@agregarrecibos')->name('empleado.agregarrecibos');
+	// Route::post('/insertar_datos_recibo',	'empleado\EmpleadoController@insertar_datos_recibo')->name('empleado.insertar_datos_recibo');
 });
 
 Route::group(array('prefix' => 'recibodesueldo'), function(){
@@ -53,3 +59,12 @@ Route::group(array('prefix' => 'recibodesueldo'), function(){
 // Route::match(['get', 'post'], '/piezasExcel', 'PiezaExcelController@index')
 //     ->name('piezaExcels.index');
 // BATCH FIN
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('email', 'Auth\AuthController@email')->name('email');
+Route::post('enlace', 'Auth\AuthController@enlace')->name('enlace');
+Route::get('clave/{token}', 'Auth\AuthController@clave')->name('clave');
+Route::post('cambiar', 'Auth\AuthController@cambiar')->name('cambiar');

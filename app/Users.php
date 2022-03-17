@@ -8,7 +8,7 @@ class Users extends Model
 {
         //
         protected $fillable = [
-            'nombreyApellido', 'cuit', 'dni','contrasena', 'admin',
+            'nombreyApellido', 'email', 'cuit', 'dni','contrasena', 'admin',
         ];
     
         /**
@@ -32,4 +32,6 @@ class Users extends Model
             $row = Users::where('cuit', '=', $cuit)->get();
             return $row;       
         }
+
+        
 }

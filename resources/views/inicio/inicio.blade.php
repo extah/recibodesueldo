@@ -564,7 +564,7 @@ a.btn-goback:hover {
 
                           <hr>
                           <div class="text-center">
-                            <a href="#">Olvido la contraseña?</a>
+                            <a href="{{route('inicio.olvidocontraseña')}}">Olvido la contraseña?</a>
                           </div>
 
                           <!-- <div class="btn-animate">

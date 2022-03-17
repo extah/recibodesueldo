@@ -1,8 +1,9 @@
 <?php
+namespace App\Http\Controllers\Auth;
 
-namespace App\Http\Controllers\Email;
 use App\Http\Controllers\Controller;
 
+use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -11,34 +12,14 @@ use Illuminate\Support\Str;
 use DB;
 use Carbon\Carbon;
 use Mail;
-use App\Users;
-use App\Password_resets;
+use App\Mail\SendDemoMail;
 
-
-// use Auth;
-// use DB;
-use URL;
-use Redirect; 
-
-
-class EmailController extends Controller
+class AuthController extends Controller
 {
-
-	// public function envia_comprobante()
-	// {	
-	// 	//$xmail = mail::findOrFail("leo_bertolotti@yahoo.com.ar");
-	// 	 $xmail = "leo_bertolotti@yahoo.com.ar";
-	// 	 $xid = "1";
-	// 	 $xndoc = "25583697";
-		 
-	// 	Mail::to($xmail)->send(new Reminder($xmail,$xid,$xndoc));
-
-
-	// }
-
-	public function acceder()
+    //Muestra la vista de acceso o login
+    public function acceder()
     {
-        return view('auth.acceso');
+        return view('auth.inicio');
     }
 
     //Autentica al usuario
@@ -115,7 +96,7 @@ class EmailController extends Controller
     {
         //Validación de email
         $request->validate([
-            'email' => 'required|email|exists:usuarios',
+            'email' => 'required|email|exists:Users',
         ]);
 
         //Generación de token y almacenado en la tabla password_resets
@@ -127,10 +108,23 @@ class EmailController extends Controller
         ]);
 
         //Envío de email al usuario
-        Mail::send('email.email', ['token' => $token], function($message) use($request){
-            $message->to($request->email);
-            $message->subject('Cambiar contraseña en CMS Laravel');
-        });
+        // Mail::send('emails.users.confirmation', ['token' => $token], function($message) use($request){
+        //     $message->to($request->email);
+        //     $message->subject('Reinicio de contraseña');
+            
+        // });
+
+        $email = $request->email;
+   
+        $maildata = [
+            'title' => 'Reinicio de la clave',
+            'url' => 'http://localhost/recibodesueldo/public/clave/' . $token
+        ];
+  
+        Mail::to($email)->send(new SendDemoMail($maildata));
+   
+        dd("Mail has been sent successfully");
+        
 
         //Retorno
         return redirect('acceder')->with('success','Te hemos enviado un email a <strong>'.$request->email.'</strong> con un enlace para realizar el cambio de contraseña.');
@@ -140,7 +134,11 @@ class EmailController extends Controller
     //Muestro el formulario para cambiar la clave
     public function clave($token)
     {
-        return view('auth.clave', ['token' => $token]);
+        // return $token;
+        $esEmp = false;
+
+        return view('auth.clave', compact('esEmp', 'token'));
+        // return view('empleado.agregarrecibos', compact('esEmp', 'login', 'status_ok', 'message', 'no_hay_datos'));
     }
 
     //cambio la clave
@@ -168,5 +166,4 @@ class EmailController extends Controller
         //Retorno
         return redirect('acceder')->with('success','La contraseña se ha cambiado correctamente.');
     }
-
 }
