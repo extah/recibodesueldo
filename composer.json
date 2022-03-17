@@ -21,6 +21,7 @@
         "phpoffice/phpspreadsheet": "^1.15",
         "setasign/fpdf": "^1.8",
         "setasign/fpdi": "^2.3",
+        "setasign/fpdi-protection": "^2.0",
         "yajra/laravel-datatables-oracle": "^9.14"
     },
     "require-dev": {

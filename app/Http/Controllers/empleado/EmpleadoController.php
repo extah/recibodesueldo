@@ -10,6 +10,7 @@ use App\Recibos_originales;
 use App\Users;
 use Barryvdh\DomPDF\Facade as PDF;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use setasign\FpdiProtection\FpdiProtection;
 
 use DB;
 // use Codedge\Fpdf\Fpdf;
@@ -343,9 +344,24 @@ class EmpleadoController extends Controller
             $carrera = $datos[0]->carrera;
             $clase = $datos[0]->clase;
             
-            $pdf = new FPDI();
-            
+            // $pdf = new FPDI();
+            $pdf = new FpdiProtection();
+
+            $pdfuserpass = '';
+            // Mot de passe pour l'utilisateur final
+            $pdfownerpass = NULL;
+            $pdfrights = array('modify', 'copy');
+            // Mot de passe du proprietaire, cree aleatoirement si pas defini
+            $pdf->SetProtection($pdfrights, $pdfuserpass, $pdfownerpass);
+
+            // $ownerPassword = $pdf->setProtection(
+            //     FpdiProtection::PERM_PRINT | FpdiProtection::PERM_COPY,
+            //     'berisso',
+            //     'muni123'
+            // );
+
             $pageCount = $pdf->setSourceFile('C:\xampp\htdocs\recibodesueldo\recibo.pdf', 'W'); 
+
             // import page 1 
             for ($pageNo = 1; $pageNo <= $pageCount; $pageNo++) {
                 // import a page
@@ -670,7 +686,15 @@ class EmpleadoController extends Controller
             $carrera = $datos[0]->carrera;
             $clase = $datos[0]->clase;
             
-            $pdf = new FPDI();
+            // $pdf = new FPDI();
+            $pdf = new FpdiProtection();
+
+            $pdfuserpass = '';
+            // Mot de passe pour l'utilisateur final
+            $pdfownerpass = NULL;
+            $pdfrights = array('modify', 'copy');
+            // Mot de passe du proprietaire, cree aleatoirement si pas defini
+            $pdf->SetProtection($pdfrights, $pdfuserpass, $pdfownerpass);
             
             $pageCount = $pdf->setSourceFile('C:\xampp\htdocs\recibodesueldo\recibo.pdf', 'W'); 
             // import page 1 
@@ -941,6 +965,7 @@ class EmpleadoController extends Controller
                         
                 $pdf->SetXY(64, 231);
                 $pdf->Write(8, 'Emitido con Fecha : ' . $ldate);
+               
                 $pdf->Output($cuil . '_recibo_' . $mes_nom . '_'. $anio . '_' . $cuil . '.pdf', 'I');
 
                 // $pdf->Output('recibo_generated.pdf', 'D');

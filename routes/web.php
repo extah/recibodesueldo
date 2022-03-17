@@ -41,8 +41,8 @@ Route::group(array('prefix' => 'empleado'), function(){
 	Route::post('/registrarse',	'empleado\EmpleadoController@registrarse')->name('empleado.registrarse');
 	Route::get('/cerrarsesion',	'empleado\EmpleadoController@cerrarsesion')->name('empleado.cerrarsesion');
 
-	// Route::get('/agregarrecibos',	'empleado\EmpleadoController@agregarrecibos')->name('empleado.agregarrecibos');
-	// Route::post('/insertar_datos_recibo',	'empleado\EmpleadoController@insertar_datos_recibo')->name('empleado.insertar_datos_recibo');
+	Route::get('/agregarrecibos',	'empleado\EmpleadoController@agregarrecibos')->name('empleado.agregarrecibos');
+	Route::post('/insertar_datos_recibo',	'empleado\EmpleadoController@insertar_datos_recibo')->name('empleado.insertar_datos_recibo');
 });
 
 Route::group(array('prefix' => 'recibodesueldo'), function(){

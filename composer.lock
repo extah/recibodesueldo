@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b4a10a367c24212cf2a2a738acac442",
+    "content-hash": "b7d5a71b88249ac0c58bb3459f144d70",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3748,6 +3748,61 @@
                 }
             ],
             "time": "2021-02-11T11:37:01+00:00"
+        },
+        {
+            "name": "setasign/fpdi-protection",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Setasign/fpdi-protection.git",
+                "reference": "c619d22b4a71d0f198e7809cd78d6a61f5bcb1bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Setasign/fpdi-protection/zipball/c619d22b4a71d0f198e7809cd78d6a61f5bcb1bd",
+                "reference": "c619d22b4a71d0f198e7809cd78d6a61f5bcb1bd",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "php": "^5.6 || ^7.0 || ^8.0",
+                "setasign/fpdf": "^1.8.4",
+                "setasign/fpdi": "^2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "setasign\\FpdiProtection\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Slabon",
+                    "email": "jan.slabon@setasign.com",
+                    "homepage": "https://www.setasign.com"
+                }
+            ],
+            "description": "A FPDI compatible version of the FPDF_Protection script.",
+            "homepage": "https://github.com/Setasign/fpdi-protection",
+            "keywords": [
+                "fpdf",
+                "fpdi",
+                "password",
+                "pdf",
+                "protection"
+            ],
+            "support": {
+                "issues": "https://github.com/Setasign/fpdi-protection/issues",
+                "source": "https://github.com/Setasign/fpdi-protection/tree/v2.0.2"
+            },
+            "time": "2021-08-30T09:05:15+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
