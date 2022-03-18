@@ -68,3 +68,5 @@ Route::get('email', 'Auth\AuthController@email')->name('email');
 Route::post('enlace', 'Auth\AuthController@enlace')->name('enlace');
 Route::get('clave/{token}', 'Auth\AuthController@clave')->name('clave');
 Route::post('cambiar', 'Auth\AuthController@cambiar')->name('cambiar');
+Route::get('felicitacones', 'Auth\AuthController@felicitacones')->name('felicitacones');
+

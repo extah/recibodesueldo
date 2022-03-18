@@ -539,16 +539,13 @@ a.btn-goback:hover {
                   <form class="row g-1 needs-validation form-signin" novalidate action="{{route('empleado.home')}}" method="post" id="formIniciarSesion" name="formIniciarSesion">
                           @csrf
                           <div class="col-md-12 p-2">
-                            <input type="email" class="form-control" name="email_inicio" id="email_inicio" value="" placeholder="Email"  required>
-                            <!-- <div class="valid-feedback">
-                              Looks good!
-                            </div> -->
+                            <input type="email" class="form-control" name="email_inicio" id="email_inicio" value="{{ $email ?? old('email') }}" placeholder="Email"  required autofocus>
                             <div class="invalid-feedback">
                                 <b>Por favor ingrese un email valido</b>
                             </div>
                           </div>
                           <div class="col-md-12 p-2">
-                            <input type="password" name="password_inicio" placeholder="Contraseña" class="form-control" id="password_inicio" value="" required>
+                            <input type="password" name="password_inicio" placeholder="Contraseña" class="form-control" id="password_inicio" value="" required >
                             <div class="invalid-feedback">
                               <b>Por favor ingrese una contraseña</b>
                             </div>
@@ -590,10 +587,10 @@ a.btn-goback:hover {
                             <input type="email" class="form-control" name="email" id="email" value="" placeholder="Email"  required>
                           </div>
                           <div class="col-md-12 p-2 col-sm-12">
-                            <input type="text" class="form-control"  name="cuit" id="cuit" value="" placeholder="Cuit"  required>
+                            <input type="text" class="form-control"  name="cuit" id="cuit" value="" placeholder="Cuit" minlength="11" maxlength="11" required>
                           </div>
                           <div class="col-md-12 p-2 col-sm-12">
-                            <input type="text" class="form-control"  name="dni" id="dni" value="" placeholder="Numero de documento"  required>
+                            <input type="text" class="form-control"  name="dni" id="dni" value="" placeholder="Numero de documento" minlength="8" maxlength="8" required>
                           </div>
                           <div class="col-md-12 p-2 col-sm-12">
                             <input type="password" class="form-control"  name="password" id="password" value="" placeholder="Contraseña"  required>

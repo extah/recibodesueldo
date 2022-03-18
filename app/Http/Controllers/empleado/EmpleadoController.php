@@ -197,16 +197,27 @@ class EmpleadoController extends Controller
         else {
             if ($contrasena == $confirmpassword) {
                 $passhash = password_hash($contrasena, PASSWORD_DEFAULT);
-                DB::insert("insert into users 
-							(nombreyApellido, cuit, dni, contrasena)
-							values('". $fullname . "', '". $cuit ."', '" . $numero_documento."', '" . $passhash ."')");
+                
+                $user = new Users();
 
-                            $message = "Cuentra creada con exito";
-                            $status_error = true;
-                            $status_ok = false;
-                            $esEmp = false;
+                $user->nombreyApellido = $nombre . " " . $apellido;
+                $user->cuit = $cuit;
+                $user->dni = $dni;
+                $user->contrasena = $passhash;
+                $user->email = $email;
+                $user->admin = 0;
+                $user->save();
 
-                            return redirect('inicio')->with(['status_info' => $status_error, 'message' => $message,]);
+                // DB::insert("insert into users 
+				// 			(nombreyApellido, cuit, dni, contrasena)
+				// 			values('". $fullname . "', '". $cuit ."', '" . $numero_documento."', '" . $passhash ."')");
+
+                $message = "Cuentra creada con éxito";
+                $status_error = true;
+                $status_ok = false;
+                $esEmp = false;
+
+                return redirect('inicio')->with(['status_info' => $status_error, 'message' => $message,]);
             }
             else {
                 $message = "No coinciden las contraseñas";

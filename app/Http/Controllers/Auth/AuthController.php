@@ -3,7 +3,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Users;
+use App\Users;
+use App\Password_resets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -28,7 +29,7 @@ class AuthController extends Controller
         //Validación de datos (incluyendo la de activo)
         $credentials = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required']
+            'contraseña' => ['required']
         ]);
         $credentials['activo'] = 1;
 
@@ -57,8 +58,8 @@ class AuthController extends Controller
         //Validación y recopilación de datos
         $request->validate([
             'nombre' => 'required',
-            'email' => 'required|email|unique:usuarios',
-            'password' => 'required|confirmed|min:6',
+            'email' => 'required|email|unique:Users',
+            'contraseña' => 'required|confirmed|min:6',
         ]);
         $data = $request->all();
 
@@ -66,7 +67,7 @@ class AuthController extends Controller
         $usuario = Usuario::create([
             'nombre' => $data['nombre'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+            'contraseña' => Hash::make($data['contraseña'])
         ]);
 
         //Login de usuario
@@ -96,10 +97,10 @@ class AuthController extends Controller
     {
         //Validación de email
         $request->validate([
-            'email' => 'required|email|exists:Users',
+            'email' => ['required', 'email'],
         ]);
 
-        //Generación de token y almacenado en la tabla password_resets
+        //Generación de token y almacenado en la tabla contraseña_resets
         $token = Str::random(64);
         DB::table('password_resets')->insert([
             'email' => $request->email,
@@ -123,11 +124,16 @@ class AuthController extends Controller
   
         Mail::to($email)->send(new SendDemoMail($maildata));
    
-        dd("Mail has been sent successfully");
+        // dd("Mail ha sido enviado con exito");
         
 
         //Retorno
-        return redirect('acceder')->with('success','Te hemos enviado un email a <strong>'.$request->email.'</strong> con un enlace para realizar el cambio de contraseña.');
+        $inicio = "";
+		$esEmp = false;
+		$cuix = "";
+		$status_info = "";
+	   
+    	return view('auth.verify', compact('inicio', 'esEmp', 'status_info'));
 
     }
 
@@ -136,8 +142,13 @@ class AuthController extends Controller
     {
         // return $token;
         $esEmp = false;
-
-        return view('auth.clave', compact('esEmp', 'token'));
+        $contraseña_resets = Password_resets::get_registro_token($token);
+        $email = "";
+        if (count($contraseña_resets) > 0) {
+            $email = $contraseña_resets[0]->email;
+        }
+        // return $email;
+        return view('auth.passwords.reset', compact('esEmp', 'token', 'email'));
         // return view('empleado.agregarrecibos', compact('esEmp', 'login', 'status_ok', 'message', 'no_hay_datos'));
     }
 
@@ -146,9 +157,9 @@ class AuthController extends Controller
     {
         //Valido datos
         $request->validate([
-            'email' => 'required|email|exists:usuarios',
-            'password' => 'required|min:8|max:16|confirmed',
-            'password_confirmation' => 'required'
+            'email' => 'required|email|exists:Users',
+            'contraseña' => 'required|min:8|max:16|confirmed',
+            'contraseña_confirmation' => 'required'
         ]);
 
         //Compruebo token válido
@@ -157,13 +168,23 @@ class AuthController extends Controller
             return back()->withInput()->with('danger','El enlace no es válido');
         }
 
-        //Actualizo password
-        Usuario::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
+        //Actualizo contraseña
+        Users::where('email', $request->email)->update(['contrasena' => Hash::make($request->contraseña)]);
 
         //Borro token para que no se pueda volver a usar
         DB::table('password_resets')->where(['email'=> $request->email])->delete();
 
         //Retorno
-        return redirect('acceder')->with('success','La contraseña se ha cambiado correctamente.');
+        $esEmp = false;
+        $email = $request->email;
+        $message = "Contraseña cambiada con éxito";
+        $status_info = true;
+        $status_ok = false;
+        $esEmp = false;
+
+        // return view('inicio.inicio', compact('message', 'status_info', 'esEmp','email'));
+        return redirect('inicio')->with(['esEmp' => $esEmp, 'email' => $email,'status_info' => $status_info, 'message' => $message,]);
+
     }
+
 }
